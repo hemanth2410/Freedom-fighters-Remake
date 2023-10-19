@@ -58,6 +58,7 @@ public class ThirdpersonController : MonoBehaviour
 
     [Tooltip("What layers the character uses as ground")]
     [SerializeField] LayerMask m_groundLayers;
+    [SerializeField] LayerMask m_aimLayers; 
 
     [Header("Cinemachine")]
     [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
@@ -112,12 +113,13 @@ public class ThirdpersonController : MonoBehaviour
     private CharacterController controller;
     private StarterAssetsInputs input;
     private GameObject mainCamera;
-
+    private Camera activeCamera;
     private const float threshold = 0.01f;
 
     private Vector3 targetDirection;
     private bool hasAnimator;
     private bool lockMovement;
+    private Vector3 aimPosition;
     private bool IsCurrentDeviceMouse
     {
         get
@@ -136,6 +138,7 @@ public class ThirdpersonController : MonoBehaviour
         if(mainCamera == null)
         {
             mainCamera = Camera.main.gameObject;
+            activeCamera = Camera.main;
         }
     }
     // Start is called before the first frame update
@@ -169,6 +172,7 @@ public class ThirdpersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        aimRaycast();
         jumpAndGravity();
         groundedCheck();
         move();
@@ -176,6 +180,20 @@ public class ThirdpersonController : MonoBehaviour
     private void LateUpdate()
     {
         cameraRotation();
+    }
+
+    void aimRaycast()
+    {
+        Vector2 _screenCenter = new Vector2(Screen.width/2, Screen.height/2);
+        Ray _ray = activeCamera.ScreenPointToRay(_screenCenter);
+        if(Physics.Raycast(_ray, out RaycastHit hit, 150f, m_aimLayers))
+        {
+            aimPosition = hit.point;
+        }
+        else
+        {
+            aimPosition = mainCamera.transform.forward * 150.0f;
+        }
     }
 
     void groundedCheck()
@@ -205,11 +223,18 @@ public class ThirdpersonController : MonoBehaviour
         animationBlend = Mathf.Lerp(animationBlend, _targetSpeed, Time.deltaTime * m_speedChangeRate);
         if (animationBlend < 0.01f) animationBlend = 0.0f;
         Vector3 _inputDirection = new Vector3(input.Move.x, 0.0f, input.Move.y).normalized;
-        if(input.Move != Vector2.zero)
+        if (input.Aim)
+        {
+            Vector3 _worldAimPosition = aimPosition;
+            _worldAimPosition.y = transform.position.y;
+            Vector3 _aimDirection = (_worldAimPosition - transform.position).normalized;
+            transform.forward = Vector3.Lerp(transform.forward, _aimDirection, Time.deltaTime * 20.0f);
+        }
+        if (input.Move != Vector2.zero)
         {
             targetRotation = Mathf.Atan2(_inputDirection.x, _inputDirection.z) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
             float _rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, m_rotationSmoothTime);
-            if(!lockMovement)
+            if(!lockMovement && !input.Aim)
                 transform.rotation = Quaternion.Euler(0.0f, _rotation, 0.0f);
         }
         if (!lockMovement)
