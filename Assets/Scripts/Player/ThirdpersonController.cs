@@ -206,7 +206,7 @@ public class ThirdpersonController : MonoBehaviour
     }
     void move()
     {
-        float _targetSpeed = input.Sprint ? m_sprintSpeed : input.Crouch ? m_moveSpeed * 0.5f : m_moveSpeed;
+        float _targetSpeed = input.Sprint && !input.Aim ? m_sprintSpeed : input.Crouch ? m_moveSpeed * 0.5f : m_moveSpeed;
         if (input.Move == Vector2.zero) _targetSpeed = 0.0f;
         float _currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
         float _speedOffset = 0.1f;
