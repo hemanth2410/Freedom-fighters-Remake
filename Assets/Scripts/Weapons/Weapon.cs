@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Weapon : MonoBehaviour
 {
     [SerializeField] InventoryItem m_WeaponData;
     [SerializeField] float m_ResetTimer;
+    [SerializeField] bool m_BeingRaycasted;
     private InventoryItemType weaponType;
     private string weaponName;
     private string weaponDescription;
     private string originalLayer;
     float resetTimer;
+    private LayerMask targetLayer;
     private void Start()
     {
         if(m_WeaponData != null)
@@ -23,9 +26,11 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.layer != LayerMask.NameToLayer(originalLayer) && resetTimer <= 0.0f)
+        if (resetTimer <= 0.0f)
         {
+            m_BeingRaycasted = false;
             gameObject.layer = LayerMask.NameToLayer(originalLayer);
+            resetTimer = m_ResetTimer;
         }
         switch (weaponType)
         {
@@ -51,8 +56,13 @@ public class Weapon : MonoBehaviour
     }
     public void UpdateWeaponLayer(string targetLayer)
     {
-        gameObject.layer = LayerMask.NameToLayer(targetLayer);
-        resetTimer = m_ResetTimer;
+        this.targetLayer = LayerMask.NameToLayer(targetLayer);
+        if (gameObject.layer != LayerMask.NameToLayer(targetLayer))
+        {
+            gameObject.layer = LayerMask.NameToLayer(targetLayer);
+            m_BeingRaycasted = true;
+            resetTimer = m_ResetTimer;
+        }
     }
     public void SetupWeaponData(InventoryItem weaponData)
     {
