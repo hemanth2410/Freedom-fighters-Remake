@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 23234583155462022}
   - component: {fileID: 64235265065833588}
   - component: {fileID: 7175346744720839356}
-  m_Layer: 0
+  - component: {fileID: 629574709777242986}
+  m_Layer: 10
   m_Name: SM_Tool_Pipe_Wrench_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,3 +135,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &629574709777242986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062937431589126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63164aeda7e4a64439b5d1980641e03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WeaponData: {fileID: 11400000, guid: 3b2d5f013b63d364c9f867bd79d7a270, type: 2}
+  m_ResetTimer: 0.5
+  m_BeingRaycasted: 0
+  m_DamagePerSecond: 150

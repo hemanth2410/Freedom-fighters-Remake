@@ -15,6 +15,8 @@ public class Weapon : MonoBehaviour
     private string originalLayer;
     float resetTimer;
     private LayerMask targetLayer;
+
+    public InventoryItem WeaponData { get { return m_WeaponData; } }
     private void Start()
     {
         if(m_WeaponData != null)
@@ -29,6 +31,8 @@ public class Weapon : MonoBehaviour
         if (resetTimer <= 0.0f)
         {
             m_BeingRaycasted = false;
+            // A perfect place to remove this weapon from shared location in memory.
+            WeaponsSingleton.Instance.RemoveWeaponFromMemory(this);
             gameObject.layer = LayerMask.NameToLayer(originalLayer);
             resetTimer = m_ResetTimer;
         }
@@ -62,6 +66,9 @@ public class Weapon : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer(targetLayer);
             m_BeingRaycasted = true;
             resetTimer = m_ResetTimer;
+            // we need to push this gameobject into a shared location on memory so other systems can access it when needed and remove it when not in use
+            // Overwrite the existing weapon if newer.
+            WeaponsSingleton.Instance.SetWeaponForPickup(this);
         }
     }
     public void SetupWeaponData(InventoryItem weaponData)

@@ -15,7 +15,8 @@ namespace StarterAssets
         public bool Sprint;
         public bool Crouch;
         public bool Aim;
-
+        public bool Pickup;
+        public bool Attack;
         [Header("Movement Settings")]
         public bool AnalogMovement;
 
@@ -56,11 +57,27 @@ namespace StarterAssets
             aimInput(context.performed);
         }
 
-       
+        public void OnPickup(InputAction.CallbackContext context)
+        {
+            pickupInput(context.performed);
+        }
+
+        public void OnAttack(InputAction.CallbackContext context)
+        {
+            attackInput(context.performed);
+        }
+
 
 
 #endif
-
+        private void attackInput(bool performed)
+        {
+            Attack = performed;
+        }
+        void pickupInput(bool value)
+        {
+            Pickup = value;
+        }
         void moveInput(Vector2 newMoveDirection)
         {
             Move = newMoveDirection;

@@ -9,9 +9,12 @@ public class InventoryItem : ScriptableObject
     [SerializeField] InventoryItemType m_itemType;
     [SerializeField] string m_inventoryItemName;
     [SerializeField][TextArea(2, 5)] string m_inventoryItemDescription;
-
+    [SerializeField] Vector3 m_positionOffset;
+    [SerializeField] Vector3 m_rotationOffset;
     public GameObject InventoryItemPrefab { get { return m_inventoryItemPrefab; } }
     public InventoryItemType ItemType { get {  return m_itemType; } }
     public string InventoryItemName { get {  return m_inventoryItemName; } }
     public string InventoryItemDescription { get { return m_inventoryItemDescription; } }
+    public Vector3 PositionOffset { get {  return m_positionOffset; } }
+    public Vector3 RotationOffset { get { return m_rotationOffset; } }
 }
