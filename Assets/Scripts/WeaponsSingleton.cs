@@ -21,8 +21,11 @@ public class WeaponsSingleton : MonoBehaviour
     Weapon weaponToShare;
 
     public Weapon WeaponToShare { get { return weaponToShare; } }
-
+    /// <summary>
+    /// This will be depricated soon
+    /// </summary>
     public event Action<InventoryItem> WeaponPicked;
+    public event Action<InventoryItem, bool> WeaponAdded;
 
     // Start is called before the first frame update
     void Start()
@@ -46,5 +49,10 @@ public class WeaponsSingleton : MonoBehaviour
     public void InvokeWeaponPicked(InventoryItem weaponInventoryItem)
     {
         WeaponPicked?.Invoke(weaponInventoryItem);
+    }
+
+    public void InvokeWeaponAdded(InventoryItem weaponInventoryItem, bool destroyObject)
+    {
+        WeaponAdded?.Invoke(weaponInventoryItem, destroyObject);
     }
 }

@@ -9,6 +9,7 @@ public class PlayerWeaponManager : MonoBehaviour
     [SerializeField][Tooltip("Override this value if Root bone is of different scale")] float m_weaponScaleMultiplier = 1.0f;
     [SerializeField] Transform m_handBone;
     [SerializeField] float m_coolDown;
+    [SerializeField] Transform m_DropTransform;
     PlayerInventory playerInventory;
     Animator animator;
     StarterAssetsInputs starterAssetsInputs;
@@ -27,20 +28,59 @@ public class PlayerWeaponManager : MonoBehaviour
 
     private void Instance_WeaponPicked(InventoryItem obj)
     {
-        if(!isArmed)
+        if (isArmed)
         {
-            var _k = Instantiate(obj.InventoryItemPrefab, m_handBone);
-            _k.transform.localPosition = obj.PositionOffset;
-            _k.transform.localRotation = Quaternion.Euler(obj.RotationOffset);
-            _k.transform.localScale *= m_weaponScaleMultiplier;
-            _k.GetComponent<Collider>().isTrigger = true;
-            _k.GetComponent<Rigidbody>().isKinematic = true;
-            _k.gameObject.layer = LayerMask.NameToLayer("Melee");
-            armedWeapon = _k.GetComponent<Weapon>();
-            isArmed = true;
+            armedWeapon.gameObject.SetActive(false);
+            isArmed = false;
+            if (armedWeapon.WeaponData.ItemType == obj.ItemType)
+            {
+                // same item probably destroy and perform cleanup
+                dropWeapon(armedWeapon.WeaponData);
+                Destroy(armedWeapon.gameObject);
+            }
         }
+        // Now change the armed weapon
+        var _k = Instantiate(obj.InventoryItemPrefab, m_handBone);
+        _k.transform.localPosition = obj.PositionOffset;
+        _k.transform.localRotation = Quaternion.Euler(obj.RotationOffset);
+        _k.transform.localScale *= m_weaponScaleMultiplier;
+        _k.GetComponent<Collider>().isTrigger = true;
+        _k.GetComponent<Rigidbody>().isKinematic = true;
+        _k.gameObject.layer = LayerMask.NameToLayer("Melee");
+        armedWeapon = _k.GetComponent<Weapon>();
+        isArmed = true;
     }
 
+    private void ChangeActiveWeapon(InventoryItem  obj)
+    {
+        if(isArmed)
+        {
+            armedWeapon.gameObject.SetActive(false);
+            isArmed = false;
+            if(armedWeapon.WeaponData.ItemType == obj.ItemType)
+            {
+                // same item probably destroy and perform cleanup
+                dropWeapon(armedWeapon.WeaponData);
+                Destroy(armedWeapon.gameObject);
+            }
+        }
+        // Now change the armed weapon
+        var _k = Instantiate(obj.InventoryItemPrefab, m_handBone);
+        _k.transform.localPosition = obj.PositionOffset;
+        _k.transform.localRotation = Quaternion.Euler(obj.RotationOffset);
+        _k.transform.localScale *= m_weaponScaleMultiplier;
+        _k.GetComponent<Collider>().isTrigger = true;
+        _k.GetComponent<Rigidbody>().isKinematic = true;
+        _k.gameObject.layer = LayerMask.NameToLayer("Melee");
+        armedWeapon = _k.GetComponent<Weapon>();
+        isArmed = true;
+    }
+
+    void dropWeapon(InventoryItem obj)
+    {
+        var k = Instantiate(obj.InventoryItemPrefab, m_DropTransform.position, m_DropTransform.rotation);
+        k.GetComponent<Rigidbody>().AddForce(m_DropTransform.forward * 10.0f);
+    }
     // Update is called once per frame
     void Update()
     {

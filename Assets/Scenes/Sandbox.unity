@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1964.5803, g: 2158.7522, b: 3344.0786, a: 1}
+  m_IndirectSpecularColor: {r: 1963.9211, g: 2158.7678, b: 3344.4731, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3368,6 +3368,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 407374, guid: 48b470c6a762f60438c631f219257520,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1331008116}
     - targetCorrespondingSourceObject: {fileID: 434610, guid: 48b470c6a762f60438c631f219257520,
         type: 3}
       insertIndex: -1
@@ -4925,6 +4929,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 812809054}
   m_SourcePrefab: {fileID: 100100000, guid: c0962ff4d67a30e4e9d7ec2b50b55139, type: 3}
+--- !u!1 &1331008115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331008116}
+  m_Layer: 7
+  m_Name: Weapon Drop Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1331008116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331008115}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.343, z: 0.392}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2033336551}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1331393607
 GameObject:
   m_ObjectHideFlags: 0
@@ -5103,10 +5138,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Wep_Knife_01
       objectReference: {fileID: 0}
-    - target: {fileID: 1274489091204098, guid: 55523c7eb8b112143a0179b415681899, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4806173120601576, guid: 55523c7eb8b112143a0179b415681899, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.11792281
@@ -5150,65 +5181,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1274489091204098, guid: 55523c7eb8b112143a0179b415681899,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1394597528}
-    - targetCorrespondingSourceObject: {fileID: 1274489091204098, guid: 55523c7eb8b112143a0179b415681899,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1394597529}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55523c7eb8b112143a0179b415681899, type: 3}
---- !u!1 &1394597527 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1274489091204098, guid: 55523c7eb8b112143a0179b415681899,
-    type: 3}
-  m_PrefabInstance: {fileID: 1394597526}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1394597528
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1394597527}
-  serializedVersion: 4
-  m_Mass: 0.1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1394597529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1394597527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63164aeda7e4a64439b5d1980641e03e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_WeaponData: {fileID: 11400000, guid: 53a11a95fe70e194cb4013bb656840e4, type: 2}
-  m_ResetTimer: 0.5
-  m_BeingRaycasted: 0
-  m_DamagePerSecond: 40
 --- !u!1 &1405474510 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1923197755458386, guid: cdc01cd9a5a3c5c438b1f0d4cb2ee3f3,
@@ -7792,8 +7766,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StarterTemplate: {fileID: 0}
-  playerInventoryItems: []
   m_PickupReady: {fileID: 11400000, guid: 9e6d77a0e8836b44fb127855fcc405d4, type: 2}
+  m_PlayerInventory:
+    MeleeWeapon: {fileID: 0}
+    Helable: {fileID: 0}
+    Throwables: []
+    PrimaryFireArm: {fileID: 0}
+    SecondaryFireArm: {fileID: 0}
 --- !u!114 &2033336550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7808,7 +7787,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_weaponScaleMultiplier: 100
   m_handBone: {fileID: 2003958336}
-  m_coolDown: 2
+  m_coolDown: 0.9
+  m_DropTransform: {fileID: 1331008116}
+--- !u!4 &2033336551 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 407374, guid: 48b470c6a762f60438c631f219257520,
+    type: 3}
+  m_PrefabInstance: {fileID: 887216324}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2034557067
 PrefabInstance:
   m_ObjectHideFlags: 0
