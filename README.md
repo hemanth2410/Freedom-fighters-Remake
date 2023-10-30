@@ -18,3 +18,14 @@ October 27 2023
   - Need to implement drop / swap system.
 
 https://github.com/hemanth2410/Freedom-fighters-Remake/assets/24288422/a427ba16-5cd3-45a4-908d-41131ad91edf
+
+October 30 2023
+  - Input system is slow, really slow compared to Unity's legacy input system (This may be because of using UnityEvents instead of SendMessages or C# events)
+  - We need to start work on audio manager with 32 audio sources as audio buffer.
+  - Changed how inventory is stored in player (Requires re visist)
+  - Update weapons prefabs with InventoryItem script
+  - A dedicated animation manager and animation programmer is needed.
+
+https://github.com/hemanth2410/Freedom-fighters-Remake/assets/24288422/fdc8f248-22cc-434d-a9c4-20a5973fd143
+
+
