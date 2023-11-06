@@ -15,8 +15,9 @@ public class Weapon : MonoBehaviour
     private string originalLayer;
     float resetTimer;
     private LayerMask targetLayer;
-
+    bool hasChildren;
     public InventoryItem WeaponData { get { return m_WeaponData; } }
+    Transform[] children;
     private void Start()
     {
         if(m_WeaponData != null)
@@ -24,6 +25,9 @@ public class Weapon : MonoBehaviour
             SetupWeaponData(m_WeaponData);
         }
         originalLayer = LayerMask.LayerToName(gameObject.layer);
+        hasChildren = transform.childCount > 0;
+        if(hasChildren)
+            children = transform.GetComponentsInChildren<Transform>();
     }
 
     private void Update()
@@ -33,21 +37,29 @@ public class Weapon : MonoBehaviour
             m_BeingRaycasted = false;
             // A perfect place to remove this weapon from shared location in memory.
             WeaponsSingleton.Instance.RemoveWeaponFromMemory(this);
-            gameObject.layer = LayerMask.NameToLayer(originalLayer);
+            if(hasChildren)
+            {
+                foreach (Transform t in children)
+                    t.gameObject.layer = LayerMask.NameToLayer(originalLayer);
+            }
+            else 
+            {
+                gameObject.layer = LayerMask.NameToLayer(originalLayer);
+            }
             resetTimer = m_ResetTimer;
         }
-        switch (weaponType)
-        {
-            case InventoryItemType.Melee:
-                // Apply melee animation, thats all and run the cool down timer.
-                break;
-            case InventoryItemType.FireArm:
-                //This needs a cool down timer and this should check if its a single fire or automatic
-                break;
-            default:
-                Debug.LogWarning("Not a weapon");
-                break;
-        }
+        //switch (weaponType)
+        //{
+        //    case InventoryItemType.Melee:
+        //        // Apply melee animation, thats all and run the cool down timer.
+        //        break;
+        //    case InventoryItemType.FireArm:
+        //        //This needs a cool down timer and this should check if its a single fire or automatic
+        //        break;
+        //    default:
+        //        Debug.LogWarning("Not a weapon");
+        //        break;
+        //}
         if(resetTimer > 0.0f)
         {
             resetTimer -= Time.deltaTime;
@@ -63,7 +75,17 @@ public class Weapon : MonoBehaviour
         this.targetLayer = LayerMask.NameToLayer(targetLayer);
         if (gameObject.layer != LayerMask.NameToLayer(targetLayer))
         {
-            gameObject.layer = LayerMask.NameToLayer(targetLayer);
+            if(hasChildren)
+            {
+                foreach (Transform child in children)
+                {
+                    child.gameObject.layer = LayerMask.NameToLayer(targetLayer);
+                }
+            }
+            else
+            {
+                gameObject.layer = LayerMask.NameToLayer(targetLayer);
+            }
             m_BeingRaycasted = true;
             resetTimer = m_ResetTimer;
             // we need to push this gameobject into a shared location on memory so other systems can access it when needed and remove it when not in use

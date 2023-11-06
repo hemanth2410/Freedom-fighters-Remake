@@ -7,12 +7,17 @@ public class InventoryItem : ScriptableObject
 {
     [SerializeField] GameObject m_inventoryItemPrefab;
     [SerializeField] InventoryItemType m_itemType;
+    [SerializeField] HandlingType m_handlingType;
+    [SerializeField][Tooltip("We typically want IK for two handed and single handed projectile weapons")] 
+    bool m_RequiresIK = false;
     [SerializeField] string m_inventoryItemName;
     [SerializeField][TextArea(2, 5)] string m_inventoryItemDescription;
     [SerializeField] Vector3 m_positionOffset;
     [SerializeField] Vector3 m_rotationOffset;
     public GameObject InventoryItemPrefab { get { return m_inventoryItemPrefab; } }
     public InventoryItemType ItemType { get {  return m_itemType; } }
+    public HandlingType HandlingType { get { return m_handlingType; } }
+    public bool RequiresIK { get { return m_RequiresIK; } }
     public string InventoryItemName { get {  return m_inventoryItemName; } }
     public string InventoryItemDescription { get { return m_inventoryItemDescription; } }
     public Vector3 PositionOffset { get {  return m_positionOffset; } }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f745f52275a8d4791bd76ccf9844fe, type: 3}
+  m_Name: 9MM
+  m_EditorClassIdentifier: 
+  m_inventoryItemPrefab: {fileID: 1252744804793604, guid: 191a40a97567c454dad88aa6ea16ac71,
+    type: 3}
+  m_itemType: 0
+  m_handlingType: 0
+  m_RequiresIK: 1
+  m_inventoryItemName: Standard 9MM
+  m_inventoryItemDescription: Always remember <b>Switching to secondary weapon</b>
+    is always faster than reloading primary weapon when need arrives. A standard
+    9mm is lethal in close range if shot perfectly.
+  m_positionOffset: {x: 9.56, y: 1.73, z: -4.38}
+  m_rotationOffset: {x: -171.45, y: -90, z: 90}

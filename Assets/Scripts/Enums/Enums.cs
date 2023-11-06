@@ -5,3 +5,8 @@ public enum InventoryItemType
     Throwable,
     Consumable
 }
+public enum HandlingType
+{
+    SingleHand,
+    DualHand
+}

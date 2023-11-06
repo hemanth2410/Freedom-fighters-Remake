@@ -1,6 +1,7 @@
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -57,11 +58,13 @@ public class PlayerWeaponManager : MonoBehaviour
         {
             armedWeapon.gameObject.SetActive(false);
             isArmed = false;
-            if(armedWeapon.WeaponData.ItemType == obj.ItemType)
+            // and again System.Linq saves the day;
+            if(playerInventory.Inventory.usableWeapons.Any(x => x.ItemType == obj.ItemType))
             {
                 // same item probably destroy and perform cleanup
                 dropWeapon(armedWeapon.WeaponData);
                 Destroy(armedWeapon.gameObject);
+                playerInventory.Inventory.RemoveDroppedWeapon(armedWeapon.WeaponData);
             }
         }
         // Now change the armed weapon

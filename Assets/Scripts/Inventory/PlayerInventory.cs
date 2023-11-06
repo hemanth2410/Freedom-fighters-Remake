@@ -11,6 +11,8 @@ public class PlayerInventory : MonoBehaviour
     InventoryUI inventoryUI;
     StarterAssetsInputs inputs;
     [SerializeField] Inventory m_PlayerInventory;
+
+    public Inventory Inventory { get { return m_PlayerInventory; } }
     // Start is called before the first frame update
 
     // We need to set some rules for Inventory system
@@ -51,6 +53,8 @@ public class PlayerInventory : MonoBehaviour
             switch(WeaponsSingleton.Instance.WeaponToShare.WeaponData.ItemType)
             {
                 case InventoryItemType.FireArm:
+                    // A perfect place to add weapon to pistol inventory
+                    m_PlayerInventory.AddSecondaryWeapon(WeaponsSingleton.Instance.WeaponToShare.WeaponData);
                     break;
                 case InventoryItemType.Melee:
                     m_PlayerInventory.AddMeleeWeapon(WeaponsSingleton.Instance.WeaponToShare.WeaponData);
@@ -61,6 +65,11 @@ public class PlayerInventory : MonoBehaviour
                     break;
             }
         }
+        // add weapons switch ligic here
+        // 1. for primary weapon
+        // 2. for secondary weapon
+        // 3. for melee weapon
+        // Scrolling will only switch between primary and secondary
     }
 }
 [System.Serializable]
@@ -72,9 +81,12 @@ public struct Inventory
     public InventoryItem PrimaryFireArm;
     public InventoryItem SecondaryFireArm;
     int remainingHelables;
+    public List<InventoryItem> usableWeapons;
+
     public void InitializeInventory(int numberOftrowablesPerSlot, int maxNumberOfHelables)
     {
         remainingHelables = numberOftrowablesPerSlot;
+        usableWeapons = new List<InventoryItem>();
     }
     public void AddMeleeWeapon(InventoryItem item)
     {
@@ -83,5 +95,16 @@ public struct Inventory
         MeleeWeapon = item;
         // Now invoke weapon replaced event so drop the inventory item or destroy it.
         WeaponsSingleton.Instance.InvokeWeaponPicked(item);
+        usableWeapons.Add(item);
+    }
+    public void AddSecondaryWeapon(InventoryItem item)
+    {
+        SecondaryFireArm = item;
+        WeaponsSingleton.Instance.InvokeWeaponPicked(item);
+        usableWeapons.Add(item);
+    }
+    public void RemoveDroppedWeapon(InventoryItem item)
+    {
+        usableWeapons.Remove(item);
     }
 }
