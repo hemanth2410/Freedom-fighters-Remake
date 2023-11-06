@@ -28,4 +28,12 @@ October 30 2023
 
 https://github.com/hemanth2410/Freedom-fighters-Remake/assets/24288422/fdc8f248-22cc-434d-a9c4-20a5973fd143
 
+November 3 2023
+  - Performed some work on player inventory system, I will have to add more inputs to switch weapons
+  - i will have to construct inventory UI
+  - Basic IK is working fine for now.
+
+https://github.com/hemanth2410/Freedom-fighters-Remake/assets/24288422/468e3045-fc8c-446b-b9bf-202943cfc435
+
+
 
