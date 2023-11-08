@@ -38,6 +38,7 @@ https://github.com/hemanth2410/Freedom-fighters-Remake/assets/24288422/468e3045-
 November 8 2023
   - Updated weapon PICKUP UI Script for better reliability and less jittering on the screen of UI element on the screen
   - Disabled AIM IK helper script for now to work on better animations and finetune animation and locomotion systems for player.
+  - Updated INput Manager from using Unity Events to C# events for speed.
 
 https://github.com/hemanth2410/Freedom-fighters-Remake/assets/24288422/52143151-94fa-4263-a6a0-91eb3d68318d
 
