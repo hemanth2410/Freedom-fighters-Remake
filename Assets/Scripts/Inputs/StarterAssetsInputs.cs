@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace StarterAssets
 {
-    public class StarterAssetsInputs : MonoBehaviour
+    public class StarterAssetsInputs : InputActionEventDispatcher
     {
         [Header("Character Input Values")]
         public Vector2 Move;
