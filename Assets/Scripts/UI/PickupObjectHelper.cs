@@ -27,7 +27,7 @@ public class PickupObjectHelper : MonoBehaviour
         {
             resetTimer = m_ResetTimer;
         }
-        if (resetTimer <= 0.0f)
+        if (resetTimer <= 0.0f && !m_BeingRaycasted)
         {
             m_BeingRaycasted = false;
             m_SharedBool.SetValue(false);
@@ -36,9 +36,11 @@ public class PickupObjectHelper : MonoBehaviour
         if (resetTimer > 0.0f)
         {
             resetTimer -= Time.deltaTime;
-            targetObject.SetActive(true);
-            if (m_BeingRaycasted)
-                m_TargetTransform.position = mainCamera.WorldToScreenPoint(m_SharedVector3.Value);
+            targetObject.SetActive(true);                
+        }
+        if(m_SharedVector3.Value != null)
+        {
+            m_TargetTransform.position = mainCamera.WorldToScreenPoint(m_SharedVector3.Value);
         }
     }
 }
