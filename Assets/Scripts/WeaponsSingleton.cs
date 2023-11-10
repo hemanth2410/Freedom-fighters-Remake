@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Test commit
 public class WeaponsSingleton : MonoBehaviour
 {
     static WeaponsSingleton instance;
