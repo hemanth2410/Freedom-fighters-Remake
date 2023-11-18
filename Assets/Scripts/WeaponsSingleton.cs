@@ -27,6 +27,7 @@ public class WeaponsSingleton : MonoBehaviour
     /// </summary>
     public event Action<InventoryItem> WeaponPicked;
     public event Action<InventoryItem, bool> WeaponAdded;
+    public event Action<InventoryItem> DropWeapon;
 
     // Start is called before the first frame update
     void Start()
@@ -55,5 +56,9 @@ public class WeaponsSingleton : MonoBehaviour
     public void InvokeWeaponAdded(InventoryItem weaponInventoryItem, bool destroyObject)
     {
         WeaponAdded?.Invoke(weaponInventoryItem, destroyObject);
+    }
+    public void InvokeDropWeapon(InventoryItem weaponInventoryItem)
+    {
+        DropWeapon?.Invoke(weaponInventoryItem);
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 64663616809961444}
   - component: {fileID: 7720057027254980760}
   - component: {fileID: 8673185361400051826}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Wep_Pistol_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,6 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c7c70811feb0749a2e8725b3ad7fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_WeaponData: {fileID: 11400000, guid: 2102ce4adbe692b4e87a48831ddfcd18, type: 2}
+  m_ResetTimer: 0.5
+  m_BeingRaycasted: 0
   m_FireRate: 45
   m_DamagePerBullet: 30
   m_WeaponData: {fileID: 11400000, guid: 2102ce4adbe692b4e87a48831ddfcd18, type: 2}
@@ -164,7 +167,7 @@ GameObject:
   - component: {fileID: 4079039963155658}
   - component: {fileID: 33919638909813526}
   - component: {fileID: 23002368772229036}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Wep_Pistol_Mag_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +250,7 @@ GameObject:
   - component: {fileID: 4615263549345854}
   - component: {fileID: 33560807206395976}
   - component: {fileID: 23665059514383174}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Wep_Pistol_Trigger_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +333,7 @@ GameObject:
   - component: {fileID: 4871334710725738}
   - component: {fileID: 33634100056632654}
   - component: {fileID: 23348507816764796}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Wep_Pistol_Slide_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

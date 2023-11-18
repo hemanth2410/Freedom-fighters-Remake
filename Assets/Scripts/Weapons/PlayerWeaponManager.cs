@@ -25,24 +25,16 @@ public class PlayerWeaponManager : MonoBehaviour
         animator = GetComponent<Animator>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         WeaponsSingleton.Instance.WeaponPicked += Instance_WeaponPicked;
+        WeaponsSingleton.Instance.DropWeapon += dropWeapon;
+
     }
 
     private void Instance_WeaponPicked(InventoryItem obj)
     {
         if (isArmed)
-        {
-            armedWeapon.gameObject.SetActive(false);
-            isArmed = false;
-            if (armedWeapon.WeaponData.ItemType == obj.ItemType)
-            {
-                // same item probably destroy and perform cleanup
-                dropWeapon(armedWeapon.WeaponData);
-                Destroy(armedWeapon.gameObject);
-            }
-        }
-        // Now change the armed weapon
+            return;
         var _k = Instantiate(obj.InventoryItemPrefab, m_handBone);
-        _k.transform.localPosition = obj.PositionOffset;
+        _k.transform.localPosition = obj.PositionOffset*m_weaponScaleMultiplier;
         _k.transform.localRotation = Quaternion.Euler(obj.RotationOffset);
         _k.transform.localScale *= m_weaponScaleMultiplier;
         _k.GetComponent<Collider>().isTrigger = true;
@@ -50,6 +42,14 @@ public class PlayerWeaponManager : MonoBehaviour
         _k.gameObject.layer = LayerMask.NameToLayer("Melee");
         armedWeapon = _k.GetComponent<Weapon>();
         isArmed = true;
+        if(obj.HandlingType == HandlingType.DualHand)
+        {
+            animator.SetBool("TwoHanded", true);
+        }
+        else
+        {
+            animator.SetBool("TwoHanded", false);
+        }
     }
 
     private void ChangeActiveWeapon(InventoryItem  obj)
@@ -69,7 +69,7 @@ public class PlayerWeaponManager : MonoBehaviour
         }
         // Now change the armed weapon
         var _k = Instantiate(obj.InventoryItemPrefab, m_handBone);
-        _k.transform.localPosition = obj.PositionOffset;
+        _k.transform.localPosition = obj.PositionOffset*m_weaponScaleMultiplier;
         _k.transform.localRotation = Quaternion.Euler(obj.RotationOffset);
         _k.transform.localScale *= m_weaponScaleMultiplier;
         _k.GetComponent<Collider>().isTrigger = true;
@@ -81,6 +81,11 @@ public class PlayerWeaponManager : MonoBehaviour
 
     void dropWeapon(InventoryItem obj)
     {
+        if(armedWeapon.WeaponData.ItemType == obj.ItemType)
+        {
+            Destroy(armedWeapon.gameObject);
+            isArmed = false;
+        }
         var k = Instantiate(obj.InventoryItemPrefab, m_DropTransform.position, m_DropTransform.rotation);
         k.GetComponent<Rigidbody>().AddForce(m_DropTransform.forward * 10.0f);
     }
