@@ -42,4 +42,14 @@ November 8 2023
 
 https://github.com/hemanth2410/Freedom-fighters-Remake/assets/24288422/52143151-94fa-4263-a6a0-91eb3d68318d
 
+Novemer 18 2023
+  - Updated code on Inventory system, PlayerWeaponManager.cs and WeaponsSingleton
+  - Now player can add weapons to inventory without dropping the item in his hands.
+  - If item of samy type or similar properties is picked up then the item in the inventory will be replaced.
+
+https://github.com/hemanth2410/Freedom-fighters-Remake/assets/24288422/987eec0c-5b9f-496d-9c78-c1cddc517060
+
+  - <b>A bug appeared, if we hold down input then player keeps spawning new weapons</b>
+  
+https://github.com/hemanth2410/Freedom-fighters-Remake/assets/24288422/add7ca7d-49f2-40db-aac0-4540eba3723a
 
