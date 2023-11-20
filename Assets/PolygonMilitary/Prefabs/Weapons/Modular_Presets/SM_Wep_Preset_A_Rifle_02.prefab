@@ -206,6 +206,7 @@ Transform:
   - {fileID: 4625387471755608}
   - {fileID: 4380117044291332}
   - {fileID: 4919406170994282}
+  - {fileID: 6989123350912767135}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33403011700333626
@@ -322,6 +323,7 @@ MonoBehaviour:
   m_WeaponData: {fileID: 11400000, guid: 61409f0dfa694d048a804a544547bf70, type: 2}
   m_ResetTimer: 0.5
   m_BeingRaycasted: 0
+  m_LeftHandIkTransform: {fileID: 6989123350912767135}
 --- !u!1 &1320487656872288
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,3 +740,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1743035996986625468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6989123350912767135}
+  m_Layer: 10
+  m_Name: LeftHandIKTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6989123350912767135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743035996986625468}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.23254538, y: 0.24883673, z: 0.93812054, w: -0.06271186}
+  m_LocalPosition: {x: -0.0904, y: -0.0322, z: 0.384}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4147778803369120}
+  m_LocalEulerAnglesHint: {x: 334.04208, y: 328.66916, z: 195.04527}

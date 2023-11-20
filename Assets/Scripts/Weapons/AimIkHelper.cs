@@ -9,7 +9,11 @@ public class AimIkHelper : MonoBehaviour
     [SerializeField] LayerMask m_AimLayerMask;
     [SerializeField] Transform m_TransformToMove;
     [SerializeField] Rig m_RigToEnable;
+    [SerializeField] Rig m_LeftHandIkRig;
+    [SerializeField] Transform m_LeftHandIkTarget;
     [SerializeField] SharedBoolVariable m_AimSharedBoolVariable;
+    bool requiresLeftHandIKTarget;
+    FullyAutomaticWeapon automaticWeapon;
     RaycastHit hit;
     Camera mainCamera;
     // Start is called before the first frame update
@@ -21,6 +25,19 @@ public class AimIkHelper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        requiresLeftHandIKTarget = WeaponsSingleton.Instance.ArmedWeapon != null && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.HandlingType == HandlingType.DualHand;
+        if (requiresLeftHandIKTarget)
+        {
+            automaticWeapon = (FullyAutomaticWeapon)WeaponsSingleton.Instance.ArmedWeapon;
+            m_LeftHandIkTarget.position = automaticWeapon.LeftHandIkTransform.position;
+            m_LeftHandIkTarget.localRotation = automaticWeapon.LeftHandIkTransform.localRotation;
+            m_LeftHandIkRig.weight = 1.0f;
+        }
+        else
+        {
+            m_LeftHandIkRig.weight = 0.0f;
+        }
         if(m_AimSharedBoolVariable.Value)
         {
             m_RigToEnable.weight = 1.0f;

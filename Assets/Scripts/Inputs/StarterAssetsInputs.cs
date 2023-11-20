@@ -17,6 +17,7 @@ namespace StarterAssets
         public bool Aim;
         public bool Pickup;
         public bool Attack;
+        public float ScrollDirection;
         [Header("Movement Settings")]
         public bool AnalogMovement;
 
@@ -67,6 +68,18 @@ namespace StarterAssets
             attackInput(context.performed);
         }
 
+        public void OnSwitch(InputAction.CallbackContext context)
+        {
+           
+            //
+            if(context.performed)
+            {
+                ScrollDirection = context.ReadValue<float>();
+                // normalize and trigger an event.
+                Debug.LogWarning("Calling event : " + ScrollDirection);
+                WeaponsSingleton.Instance.InvokeWeaponSwitch((int)ScrollDirection);
+            }
+        }
 
 
 #endif
