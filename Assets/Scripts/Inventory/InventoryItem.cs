@@ -7,6 +7,7 @@ public class InventoryItem : ScriptableObject
 {
     [SerializeField] GameObject m_inventoryItemPrefab;
     [SerializeField] InventoryItemType m_itemType;
+    [SerializeField] ShotType m_shotType;
     [SerializeField] HandlingType m_handlingType;
     [SerializeField][Tooltip("We typically want IK for two handed and single handed projectile weapons")] 
     bool m_RequiresIK = false;
@@ -17,6 +18,7 @@ public class InventoryItem : ScriptableObject
     public GameObject InventoryItemPrefab { get { return m_inventoryItemPrefab; } }
     public InventoryItemType ItemType { get {  return m_itemType; } }
     public HandlingType HandlingType { get { return m_handlingType; } }
+    public ShotType ShotType {  get { return m_shotType; } }
     public bool RequiresIK { get { return m_RequiresIK; } }
     public string InventoryItemName { get {  return m_inventoryItemName; } }
     public string InventoryItemDescription { get { return m_inventoryItemDescription; } }

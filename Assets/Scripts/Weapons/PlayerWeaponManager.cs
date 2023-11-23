@@ -69,6 +69,7 @@ public class PlayerWeaponManager : MonoBehaviour
             _j.transform.localScale *= m_weaponScaleMultiplier;
             _j.GetComponent<Collider>().isTrigger = true;
             _j.GetComponent<Rigidbody>().isKinematic = true;
+            _j.GetComponent<Weapon>().OnPicked(starterAssetsInputs);
             _j.gameObject.layer = LayerMask.NameToLayer("Melee");
             _j.SetActive(false);
             pickedWeapons[obj.InventoryItemName] = _j;
@@ -80,6 +81,7 @@ public class PlayerWeaponManager : MonoBehaviour
         _k.transform.localScale *= m_weaponScaleMultiplier;
         _k.GetComponent<Collider>().isTrigger = true;
         _k.GetComponent<Rigidbody>().isKinematic = true;
+        _k.GetComponent<Weapon>().OnPicked(starterAssetsInputs);
         _k.gameObject.layer = LayerMask.NameToLayer("Melee");
         armedWeapon = _k.GetComponent<Weapon>();
         setArmedWeaponInWeaponsSingleton(armedWeapon);

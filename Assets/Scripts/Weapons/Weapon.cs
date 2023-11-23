@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
@@ -18,7 +19,9 @@ public class Weapon : MonoBehaviour
     bool hasChildren;
     public InventoryItem WeaponData { get { return m_WeaponData; } }
     Transform[] children;
-    private void Start()
+
+    protected StarterAssetsInputs inputs;
+    protected virtual void Start()
     {
         if(m_WeaponData != null)
         {
@@ -30,7 +33,7 @@ public class Weapon : MonoBehaviour
             children = transform.GetComponentsInChildren<Transform>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (resetTimer <= 0.0f)
         {
@@ -98,5 +101,13 @@ public class Weapon : MonoBehaviour
         weaponType = weaponData.ItemType;
         weaponName = weaponData.InventoryItemName;
         weaponDescription = weaponData.InventoryItemDescription;
+    }
+    public void OnPicked(StarterAssetsInputs inputs)
+    {
+        this.inputs = inputs;
+    }
+    public void OnDropped()
+    {
+        this.inputs = null;
     }
 }

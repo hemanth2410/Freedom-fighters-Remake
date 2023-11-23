@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Pool;
 // Test commit
 public class WeaponsSingleton : MonoBehaviour
 {
@@ -21,6 +21,8 @@ public class WeaponsSingleton : MonoBehaviour
 
     Weapon weaponToShare;
     Weapon armedWeapon;
+    IObjectPool<GameObject> bulletPool;
+    IObjectPool<GameObject> decalPool;
     public Weapon ArmedWeapon { get { return armedWeapon; } }
     public Weapon WeaponToShare { get { return weaponToShare; } }
     /// <summary>
@@ -30,6 +32,10 @@ public class WeaponsSingleton : MonoBehaviour
     public event Action<InventoryItem, bool> WeaponAdded;
     public event Action<InventoryItem> DropWeapon;
     public event Action<int> SwitchWeapon;
+
+    public IObjectPool<GameObject> BulletPool { get { return bulletPool; } }
+    public IObjectPool<GameObject> DecalPool { get { return decalPool; } }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,5 +76,14 @@ public class WeaponsSingleton : MonoBehaviour
     public void SetArmedWeapon(Weapon weapon)
     {
         armedWeapon = weapon;
+    }
+
+    public void RegisterBulletPool(IObjectPool<GameObject> pool)
+    {
+        bulletPool = pool;
+    }
+    public void RegisterDecalPool(IObjectPool<GameObject> pool)
+    {
+        decalPool = pool;
     }
 }
