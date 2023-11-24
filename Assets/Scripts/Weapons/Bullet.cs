@@ -49,7 +49,7 @@ public class Bullet : MonoBehaviour
         {
             Vector3 angles = transform.rotation.eulerAngles;
             Vector2 offset = new Vector2(Random.Range(-spreadFactor, spreadFactor), Random.Range(-spreadFactor, spreadFactor));
-            Debug.Log("Generated Offset : " + offset);
+            //Debug.Log("Generated Offset : " + offset);
             transform.rotation = Quaternion.Euler(angles.x + (offset.x), angles.y + (offset.y), angles.z);
         }
     }

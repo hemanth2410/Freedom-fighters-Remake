@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1964.5803, g: 2158.7522, b: 3344.0786, a: 1}
+  m_IndirectSpecularColor: {r: 1964.5784, g: 2158.7522, b: 3344.0356, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7385,16 +7385,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ApplyAfter: 2
+  m_ApplyAfter: 0
   m_ChannelMask: 1
   m_Gain: 0.1
   m_Use2DDistance: 0
   m_UseCameraSpace: 1
   m_ReactionSettings:
-    m_SecondaryNoise: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_Duration: 1
+    m_SecondaryNoise: {fileID: 11400000, guid: 20e46be82478fa24b90f748044c06b4b, type: 2}
+    m_AmplitudeGain: 0.1
+    m_FrequencyGain: 0.1
+    m_Duration: 0.1
     m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1611222423
 GameObject:
@@ -10643,26 +10643,6 @@ PrefabInstance:
     - target: {fileID: 4147778803369120, guid: a1f7d22f9f0fa1543bbbadeb0942f75d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2067728816280126599, guid: a1f7d22f9f0fa1543bbbadeb0942f75d,
-        type: 3}
-      propertyPath: m_DefaultVelocity.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2067728816280126599, guid: a1f7d22f9f0fa1543bbbadeb0942f75d,
-        type: 3}
-      propertyPath: m_DefaultVelocity.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2067728816280126599, guid: a1f7d22f9f0fa1543bbbadeb0942f75d,
-        type: 3}
-      propertyPath: m_ImpulseDefinition.m_ImpulseType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2067728816280126599, guid: a1f7d22f9f0fa1543bbbadeb0942f75d,
-        type: 3}
-      propertyPath: m_ImpulseDefinition.m_ImpulseShape
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

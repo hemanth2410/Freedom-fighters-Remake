@@ -13,6 +13,9 @@ public class FullyAutomaticWeapon : Weapon
     [SerializeField] float m_MuzzleVelosity;
     [SerializeField] float m_MaxSpread;
     [SerializeField] Transform m_FireTransform;
+    [SerializeField] AudioSource m_FirstShot;
+    [SerializeField] AudioSource m_Loop;
+    [SerializeField] AudioSource m_Far;
     ParticleSystem fireSystem;
     float timeBetweenShots;
     float lastshotTime;
@@ -31,6 +34,7 @@ public class FullyAutomaticWeapon : Weapon
         
         if(inputs != null && inputs.Attack &&  Time.time - lastshotTime > timeBetweenShots)
         {
+
             if(!fireSystem.isPlaying)
             {
                 fireSystem.Play();
@@ -49,6 +53,7 @@ public class FullyAutomaticWeapon : Weapon
         {
             fireSystem.Stop();
             spreadFactor = 0.0f;
+           
         }
     }
 }
