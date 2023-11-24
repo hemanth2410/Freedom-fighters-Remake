@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
     Vector3 p2;
     LineRenderer lineRenderer;
     float spreadFactor;
+    bool penetrated;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,8 +79,15 @@ public class Bullet : MonoBehaviour
         float distance = Vector3.Distance(p1, p2);
         if(Physics.Raycast(p1, direction, out hit, distance))
         {
+            var impactHole = WeaponsSingleton.Instance.DecalPool.Get();
+            impactHole.GetComponent<DecalHandler>().Setup(15.0f);
+            impactHole.transform.position = hit.point;
+            impactHole.transform.forward = direction;
+            lineRenderer.SetPosition(0, hit.point);
+            transform.position = hit.point;
+            lineRenderer.SetPosition(1, p1);
             // we have a hit and we check for penetration test
-            if(canPenetrate)
+            if (canPenetrate)
             {
                 // we perform a reverse raycast and check for penetration
                 // we set p1 on next frame to the other side of the wall.
@@ -93,22 +101,15 @@ public class Bullet : MonoBehaviour
                     exitHole.transform.position = penetrationTest.point;
                     exitHole.GetComponent<DecalHandler>().Setup(15.0f);
                     exitHole.transform.forward = -direction;
-                    // spawn an exit hole at penertationTest.point;
-                    // we will have to set p1 to penetrationtest.point?
+                    penetrated = true;
+                }
+                else
+                {
+                    GetComponent<ReturnToPool>().SendToPool();
+                    return;
                 }
             }
-            //else
-            //{
-            //    GetComponent<ReturnToPool>().SendToPool();
-            //}
-            var impactHole = WeaponsSingleton.Instance.DecalPool.Get();
-            impactHole.GetComponent<DecalHandler>().Setup(15.0f);
-            impactHole.transform.position = hit.point;
-            impactHole.transform.forward = direction;
-            lineRenderer.SetPosition(0, hit.point);
-            transform.position = hit.point;
-            lineRenderer.SetPosition(1, p1);
-            if(!canPenetrate)
+            else
             {
                 GetComponent<ReturnToPool>().SendToPool();
             }
