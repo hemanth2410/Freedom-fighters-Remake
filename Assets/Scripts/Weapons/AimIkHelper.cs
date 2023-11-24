@@ -10,12 +10,17 @@ public class AimIkHelper : MonoBehaviour
     [SerializeField] Transform m_TransformToMove;
     [SerializeField] Rig m_RigToEnable;
     [SerializeField] Rig m_LeftHandIkRig;
+    [SerializeField] Rig m_SpineIK;
+    [SerializeField] Rig m_HeadIK;
     [SerializeField] Transform m_LeftHandIkTarget;
     [SerializeField] SharedBoolVariable m_AimSharedBoolVariable;
+    [SerializeField] SharedVector3Variable m_AimSharedVector3;
+    [SerializeField] LayerMask m_AimLayers;
     bool requiresLeftHandIKTarget;
     FullyAutomaticWeapon automaticWeapon;
     RaycastHit hit;
     Camera mainCamera;
+    Vector3 aimPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,19 +45,16 @@ public class AimIkHelper : MonoBehaviour
         }
         if(m_AimSharedBoolVariable.Value)
         {
+            m_TransformToMove.position = m_AimSharedVector3.Value;
             m_RigToEnable.weight = 1.0f;
-            if(Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, m_MaxAimDistance, m_AimLayerMask))
-            {
-                m_TransformToMove.position = hit.point;
-            }
-            else
-            {
-                m_TransformToMove.position = mainCamera.transform.forward * m_MaxAimDistance;
-            }
+            m_SpineIK.weight = 1.0f;
+            m_HeadIK.weight = 1.0f;
         }
         else
         {
             m_RigToEnable.weight = 0.0f;
+            m_SpineIK.weight = 0.0f;
+            m_HeadIK.weight = 0.0f;
         }
     }
 }

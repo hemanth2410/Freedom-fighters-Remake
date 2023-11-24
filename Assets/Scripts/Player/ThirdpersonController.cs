@@ -81,6 +81,8 @@ public class ThirdpersonController : MonoBehaviour
 
     [Tooltip("Sensitivity when aiming")]
     [SerializeField] float m_aimSensitivity;
+    [SerializeField] SharedVector3Variable m_AimPosition;
+    [SerializeField] Transform m_aimPositionTransform;
 
     // cinemachine
     private float cinemachineTargetYaw;
@@ -184,15 +186,19 @@ public class ThirdpersonController : MonoBehaviour
 
     void aimRaycast()
     {
-        Vector2 _screenCenter = new Vector2(Screen.width/2, Screen.height/2);
+        Vector2 _screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
         Ray _ray = activeCamera.ScreenPointToRay(_screenCenter);
-        if(Physics.Raycast(_ray, out RaycastHit hit, 150f, m_aimLayers))
+        if (Physics.Raycast(_ray, out RaycastHit hit, 150f, m_aimLayers))
         {
             aimPosition = hit.point;
+            m_AimPosition.SetValue(hit.point);
+            m_aimPositionTransform.position = hit.point;
         }
         else
         {
             aimPosition = mainCamera.transform.forward * 150.0f;
+            m_AimPosition.SetValue(aimPosition);
+            m_aimPositionTransform.position = aimPosition;
         }
     }
 

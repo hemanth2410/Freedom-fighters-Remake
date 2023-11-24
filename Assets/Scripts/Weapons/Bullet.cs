@@ -15,12 +15,16 @@ public class Bullet : MonoBehaviour
     Vector3 p1;
     Vector3 p2;
     LineRenderer lineRenderer;
+    float spreadFactor;
     // Start is called before the first frame update
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
     }
-
+    private void OnEnable()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {
@@ -33,7 +37,7 @@ public class Bullet : MonoBehaviour
     /// <param name="initialPosition">World position on spawn</param>
     /// <param name="timeToLive">time the bullet should be alive</param>
     /// <param name="canPenetrate">Can this bullet penetrate</param>
-    public void SetupBullet(float speed, Vector3 initialPosition, float timeToLive, bool canPenetrate = false, float maxPenetrationDistance = 0)
+    public void SetupBullet(float speed, Vector3 initialPosition, float timeToLive, bool canPenetrate = false, float maxPenetrationDistance = 0, float spreadFactor = 0.0f)
     {
         currentTime = 0;
         this.speed = speed;
@@ -41,6 +45,13 @@ public class Bullet : MonoBehaviour
         this.timeToLive = timeToLive;
         this.canPenetrate = canPenetrate;
         this.maxPenetrationDistance = maxPenetrationDistance;
+        if (spreadFactor > 0.0f)
+        {
+            Vector3 angles = transform.rotation.eulerAngles;
+            Vector2 offset = new Vector2(Random.Range(-spreadFactor, spreadFactor), Random.Range(-spreadFactor, spreadFactor));
+            Debug.Log("Generated Offset : " + offset);
+            transform.rotation = Quaternion.Euler(angles.x + (offset.x), angles.y + (offset.y), angles.z);
+        }
     }
 
     void simulateBullet()
@@ -86,6 +97,10 @@ public class Bullet : MonoBehaviour
                     // we will have to set p1 to penetrationtest.point?
                 }
             }
+            //else
+            //{
+            //    GetComponent<ReturnToPool>().SendToPool();
+            //}
             var impactHole = WeaponsSingleton.Instance.DecalPool.Get();
             impactHole.GetComponent<DecalHandler>().Setup(15.0f);
             impactHole.transform.position = hit.point;
@@ -93,6 +108,11 @@ public class Bullet : MonoBehaviour
             lineRenderer.SetPosition(0, hit.point);
             transform.position = hit.point;
             lineRenderer.SetPosition(1, p1);
+            if(!canPenetrate)
+            {
+                GetComponent<ReturnToPool>().SendToPool();
+            }
+            
         }
         else
         {
