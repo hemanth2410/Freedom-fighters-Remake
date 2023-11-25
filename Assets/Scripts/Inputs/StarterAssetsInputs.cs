@@ -17,6 +17,7 @@ namespace StarterAssets
         public bool Aim;
         public bool Pickup;
         public bool Attack;
+        public bool Reload;
         public float ScrollDirection;
         [Header("Movement Settings")]
         public bool AnalogMovement;
@@ -79,6 +80,10 @@ namespace StarterAssets
                 Debug.LogWarning("Calling event : " + ScrollDirection);
                 WeaponsSingleton.Instance.InvokeWeaponSwitch((int)ScrollDirection);
             }
+        }
+        public void OnReload(InputAction.CallbackContext context)
+        {
+            Reload = context.performed;
         }
 
 

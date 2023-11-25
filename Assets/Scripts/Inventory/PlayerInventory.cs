@@ -54,11 +54,11 @@ public class PlayerInventory : MonoBehaviour
             {
                 case InventoryItemType.FireArm:
                     // A perfect place to add weapon to pistol inventory
-                    if(WeaponsSingleton.Instance.WeaponToShare.WeaponData.HandlingType == HandlingType.SingleHand)
+                    if(WeaponsSingleton.Instance.WeaponToShare.WeaponData.ShotConfigration.HandlingType == HandlingType.SingleHand)
                     {
                         m_PlayerInventory.AddSecondaryWeapon(WeaponsSingleton.Instance.WeaponToShare.WeaponData);
                     }
-                    if(WeaponsSingleton.Instance.WeaponToShare.WeaponData.HandlingType == HandlingType.DualHand)
+                    if(WeaponsSingleton.Instance.WeaponToShare.WeaponData.ShotConfigration.HandlingType == HandlingType.DualHand)
                     {
                         Debug.Log("Adding primary weapon");
                         m_PlayerInventory.AddPrimaryWeapon(WeaponsSingleton.Instance.WeaponToShare.WeaponData);

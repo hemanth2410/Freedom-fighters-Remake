@@ -54,7 +54,16 @@ public class Bullet : MonoBehaviour
             transform.rotation = Quaternion.Euler(angles.x + (offset.x), angles.y + (offset.y), angles.z);
         }
     }
-
+    public void SetupBullet(float speed, Vector3 initialPosition, float timeToLive, Vector3 spread, bool canPenetrate = false, float maxPenetrationDistance = 0)
+    {
+        currentTime = 0;
+        this.speed = speed;
+        this.initialPosition = initialPosition;
+        this.timeToLive = timeToLive;
+        this.canPenetrate = canPenetrate;
+        this.maxPenetrationDistance = maxPenetrationDistance;
+        transform.forward += transform.TransformDirection(spread);
+    }
     void simulateBullet()
     {
         if(currentTime > timeToLive)
@@ -99,7 +108,7 @@ public class Bullet : MonoBehaviour
                     speed *= 0.9f;
                     var exitHole = WeaponsSingleton.Instance.DecalPool.Get();
                     exitHole.transform.position = penetrationTest.point;
-                    exitHole.GetComponent<DecalHandler>().Setup(15.0f);
+                    exitHole.GetComponent<DecalHandler>().Setup(30.0f);
                     exitHole.transform.forward = -direction;
                     penetrated = true;
                 }

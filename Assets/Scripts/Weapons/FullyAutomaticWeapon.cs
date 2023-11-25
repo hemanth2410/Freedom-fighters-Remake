@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class FullyAutomaticWeapon : Weapon
@@ -16,42 +17,88 @@ public class FullyAutomaticWeapon : Weapon
     [SerializeField] AudioSource m_FirstShot;
     [SerializeField] AudioSource m_Loop;
     [SerializeField] AudioSource m_Far;
-    ParticleSystem fireSystem;
+    [SerializeField] ParticleSystem fireSystem;
+    [SerializeField] ParticleSystem shells;
+    [SerializeField] SharedBoolVariable m_ReloadReticle;
     float timeBetweenShots;
     float lastshotTime;
     float spreadFactor;
     CinemachineImpulseSource impulseSource;
+    int currentMagCapacity;
+    bool weaponReady;
     protected override void Start()
     {
         base.Start();
+        if (!weaponReady)
+            return;
         timeBetweenShots = 60.0f / m_FireRate;
-        fireSystem = GetComponentInChildren<ParticleSystem>();
+        //fireSystem = GetComponentInChildren<ParticleSystem>();
         impulseSource = GetComponent<CinemachineImpulseSource>();
+        WeaponsSingleton.Instance.RecoilProcessor.SetupTextureRecoil(WeaponData.ShotConfigration.RecoilTexture);
+        currentMagCapacity = WeaponData.ShotConfigration.MagCapacity;
+        WeaponsSingleton.Instance.ReloadComplete += onReload;
+    }
+
+    public void SetWeaponReady()
+    {
+        weaponReady = true;
+    }
+    
+    void onReload()
+    {
+        currentMagCapacity = WeaponData.ShotConfigration.MagCapacity;
+        m_ReloadReticle.SetValue(false);
     }
     protected override void Update()
     {
         base.Update();
-        
+        if (!weaponReady)
+            return;
+        if (currentMagCapacity <= 0)
+        {
+            m_ReloadReticle.SetValue(true);
+            fireSystem.Stop();
+            shells.Stop();
+            spreadFactor = 0.0f;
+            // set some value to reload reticle???
+            return;
+        }        
         if(inputs != null && inputs.Attack &&  Time.time - lastshotTime > timeBetweenShots)
         {
 
             if(!fireSystem.isPlaying)
             {
                 fireSystem.Play();
+                shells.Play();
             }
             lastshotTime = Time.time;
             var bullet = WeaponsSingleton.Instance.BulletPool.Get();
             bullet.SetActive(true);
-
             spreadFactor += Time.deltaTime;
             spreadFactor = Mathf.Clamp(spreadFactor, 0.0f, m_MaxSpread);
-            bullet.transform.forward = m_FireTransform.forward;
-            bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, true, 0.28f,spreadFactor);
+            switch (WeaponData.ShotConfigration.RecoilType)
+            {
+                case RecoilType.None:
+                    break;
+                case RecoilType.Simple:
+                    bullet.transform.forward = m_FireTransform.forward;
+                    bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, true, 0.28f, spreadFactor);
+                    break;
+                case RecoilType.Texture:
+                    bullet.transform.forward = m_FireTransform.forward;
+                    Vector3 _recoil = WeaponsSingleton.Instance.RecoilProcessor.GetRecoil(spreadFactor / m_MaxSpread).normalized;
+                    bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, _recoil*0.01f, true, 0.28f);
+                    break;
+            }
+            //bullet.transform.forward = m_FireTransform.forward;
+            //bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, true, 0.28f,spreadFactor);
             impulseSource.GenerateImpulse();
+            currentMagCapacity--;
         }
         if(inputs != null && !inputs.Attack && !fireSystem.isStopped)
         {
             fireSystem.Stop();
+            shells.Stop();
             spreadFactor = 0.0f;
            
         }

@@ -24,3 +24,10 @@ public enum PoolType
     Stack,
     LinkedList
 }
+
+public enum RecoilType
+{
+    None,
+    Simple,
+    Texture
+}

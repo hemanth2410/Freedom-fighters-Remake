@@ -16,6 +16,7 @@ public class AimIkHelper : MonoBehaviour
     [SerializeField] SharedBoolVariable m_AimSharedBoolVariable;
     [SerializeField] SharedVector3Variable m_AimSharedVector3;
     [SerializeField] LayerMask m_AimLayers;
+    [SerializeField] SharedBoolVariable m_Reload;
     bool requiresLeftHandIKTarget;
     FullyAutomaticWeapon automaticWeapon;
     RaycastHit hit;
@@ -30,8 +31,16 @@ public class AimIkHelper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        requiresLeftHandIKTarget = WeaponsSingleton.Instance.ArmedWeapon != null && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.HandlingType == HandlingType.DualHand;
+        if (m_Reload.Value)
+        {
+            m_LeftHandIkRig.weight = 0.0f;
+            m_HeadIK.weight = 0.0f;
+            m_SpineIK.weight = 0f;
+            m_RigToEnable.weight = 0.0f;
+            return;
+        }
+
+        requiresLeftHandIKTarget = WeaponsSingleton.Instance.ArmedWeapon != null && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration.HandlingType == HandlingType.DualHand;
         if (requiresLeftHandIKTarget)
         {
             automaticWeapon = (FullyAutomaticWeapon)WeaponsSingleton.Instance.ArmedWeapon;

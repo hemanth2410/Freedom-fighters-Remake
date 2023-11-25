@@ -32,6 +32,13 @@ public class PlayerWeaponManager : MonoBehaviour
         WeaponsSingleton.Instance.WeaponPicked += Instance_WeaponPicked;
         WeaponsSingleton.Instance.DropWeapon += dropWeapon;
         WeaponsSingleton.Instance.SwitchWeapon += Instance_SwitchWeapon;
+        
+    }
+
+    void onReloadComplete()
+    {
+        // invoke an event to weapons singleton to perform reload complete
+        WeaponsSingleton.Instance.InvokeReloadComplete();
     }
 
     private void Instance_SwitchWeapon(int value)
@@ -49,9 +56,11 @@ public class PlayerWeaponManager : MonoBehaviour
         armedWeapon.gameObject.SetActive(true);
         setArmedWeaponInWeaponsSingleton(armedWeapon);
         isArmed = true;
-        if (armedWeapon.WeaponData.HandlingType == HandlingType.DualHand)
+        if (armedWeapon.WeaponData.ShotConfigration.HandlingType == HandlingType.DualHand)
         {
             animator.SetBool("TwoHanded", true);
+            var k = (FullyAutomaticWeapon)armedWeapon;
+            k.SetWeaponReady();
         }
         else
         {
@@ -87,9 +96,11 @@ public class PlayerWeaponManager : MonoBehaviour
         setArmedWeaponInWeaponsSingleton(armedWeapon);
         pickedWeapons[obj.InventoryItemName] = _k;
         isArmed = true;
-        if(obj.HandlingType == HandlingType.DualHand)
+        if(obj.ShotConfigration.HandlingType == HandlingType.DualHand)
         {
             animator.SetBool("TwoHanded", true);
+            var k = (FullyAutomaticWeapon)armedWeapon;
+            k.SetWeaponReady();
         }
         else
         {
@@ -140,6 +151,11 @@ public class PlayerWeaponManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (starterAssetsInputs.Reload)
+        {
+            animator.SetTrigger("Reload");
+        }
+
         if (cooldown)
         {
             timer -= Time.deltaTime;
