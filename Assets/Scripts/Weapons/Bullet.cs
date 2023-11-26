@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] LayerMask m_CollidableSurfaces;
     float speed;
     float timeToLive;
     float currentTime;
@@ -86,7 +87,7 @@ public class Bullet : MonoBehaviour
     {
         Vector3 direction = (p2-p1).normalized;
         float distance = Vector3.Distance(p1, p2);
-        if(Physics.Raycast(p1, direction, out hit, distance))
+        if(Physics.Raycast(p1, direction, out hit, distance,m_CollidableSurfaces))
         {
             var impactHole = WeaponsSingleton.Instance.DecalPool.Get();
             impactHole.GetComponent<DecalHandler>().Setup(15.0f);
@@ -102,7 +103,7 @@ public class Bullet : MonoBehaviour
                 // we set p1 on next frame to the other side of the wall.
                 // we alter the angle a little on impact
                 Vector3 targetReverseRaycastPosition = hit.point + (direction * maxPenetrationDistance);
-                if(Physics.Raycast(targetReverseRaycastPosition, -direction, out penetrationTest, maxPenetrationDistance))
+                if(Physics.Raycast(targetReverseRaycastPosition, -direction, out penetrationTest, maxPenetrationDistance, m_CollidableSurfaces))
                 {
                     // the bullet has penetrated
                     speed *= 0.9f;

@@ -30,6 +30,7 @@ public class Shotgun : Weapon
         currentMagCapacity = WeaponData.ShotConfigration.MagCapacity;
         WeaponsSingleton.Instance.ReloadComplete += onReload;
         timeBetweenShots = 1.2f;
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     private void onReload()
@@ -67,6 +68,7 @@ public class Shotgun : Weapon
                 //bullet.transform.forward += transform.TransformDirection(offset);
                 bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, false, 0.28f, 0);
             }
+            impulseSource.GenerateImpulse();
         }
         if (inputs != null && !inputs.Attack && !fireSystem.isStopped)
         {

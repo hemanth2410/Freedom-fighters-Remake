@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 23011332790633300}
   - component: {fileID: 64399669390340984}
   - component: {fileID: 7640250140518728101}
-  - component: {fileID: 1764633249768000948}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SM_Wep_Preset_A_Rifle_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,21 +138,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1764633249768000948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1142781627598564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6daf49f310ce554faf04de5d043048a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_WeaponData: {fileID: 11400000, guid: 9e744750b9bc4fc43a776ad9b984fc6f, type: 2}
-  m_ResetTimer: 0.5
-  m_BeingRaycasted: 0
 --- !u!1 &1532592066197970
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +149,7 @@ GameObject:
   - component: {fileID: 4506223434701870}
   - component: {fileID: 33438498734950056}
   - component: {fileID: 23736653454162030}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SM_Wep_Preset_A_Rifle_03_Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +232,7 @@ GameObject:
   - component: {fileID: 4658946247924310}
   - component: {fileID: 33045743450058780}
   - component: {fileID: 23044372299703774}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SM_Wep_Preset_A_Rifle_03_Charge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +315,7 @@ GameObject:
   - component: {fileID: 4338735783196150}
   - component: {fileID: 33819336512755670}
   - component: {fileID: 23294545239152386}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SM_Wep_Preset_A_Rifle_03_Mag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +398,7 @@ GameObject:
   - component: {fileID: 4194728877307702}
   - component: {fileID: 33496074461737452}
   - component: {fileID: 23603508848339534}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SM_Wep_Preset_A_Rifle_03_Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}

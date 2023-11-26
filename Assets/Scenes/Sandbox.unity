@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1964.5784, g: 2158.7522, b: 3344.067, a: 1}
+  m_IndirectSpecularColor: {r: 1964.5784, g: 2158.7522, b: 3344.0278, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -596,7 +596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1666144747493992, guid: b22806cbea1752c40ae52de5718d0ec0, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1672196683749566, guid: b22806cbea1752c40ae52de5718d0ec0, type: 3}
       propertyPath: m_Layer
@@ -5411,11 +5411,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1403235601242518, guid: 9b81e64683c3b5146a913703abead367,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2078936274}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b81e64683c3b5146a913703abead367, type: 3}
 --- !u!1001 &1152009198
 PrefabInstance:
@@ -9928,26 +9924,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Wep_Preset_A_Rifle_03
       objectReference: {fileID: 0}
-    - target: {fileID: 1142781627598564, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1532592066197970, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1695848801750176, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1798792452758554, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1937748833579896, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4075400151191790, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.148
@@ -9987,11 +9963,6 @@ PrefabInstance:
     - target: {fileID: 4075400151191790, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764633249768000948, guid: f2d3c1000666f4f4083180b2cca9a345,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11202,39 +11173,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2033336551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2078936273 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1403235601242518, guid: 9b81e64683c3b5146a913703abead367,
-    type: 3}
-  m_PrefabInstance: {fileID: 1095686129}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &2078936274
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078936273}
-  serializedVersion: 4
-  m_Mass: 7
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &2093402969
 GameObject:
   m_ObjectHideFlags: 0
