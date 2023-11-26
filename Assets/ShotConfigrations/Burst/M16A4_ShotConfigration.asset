@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62890daea4ad03c4fb0274cda0c73a10, type: 3}
+  m_Name: M16A4_ShotConfigration
+  m_EditorClassIdentifier: 
+  m_shotType: 3
+  m_handlingType: 1
+  m_recoilType: 1
+  m_maxSpread: 0.25
+  m_recoilTexture: {fileID: 2800000, guid: 11822008209aacc41ac1da7daa0ce80c, type: 3}
+  m_RequiresIK: 1
+  m_supportsSecondaryFireMode: 0
+  m_SecondaryShotType: 0
+  m_magCapacity: 30

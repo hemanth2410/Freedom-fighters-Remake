@@ -20,6 +20,7 @@ public class AimIkHelper : MonoBehaviour
     bool requiresLeftHandIKTarget;
     FullyAutomaticWeapon automaticWeapon;
     Shotgun shotgun;
+    Burst burst;
     RaycastHit hit;
     Camera mainCamera;
     Vector3 aimPosition;
@@ -61,6 +62,10 @@ public class AimIkHelper : MonoBehaviour
                     m_LeftHandIkRig.weight = 1.0f;
                     break;
                 case ShotType.Burst:
+                    burst = (Burst)WeaponsSingleton.Instance.ArmedWeapon;
+                    m_LeftHandIkTarget.position = burst.LeftHandIkTransform.position;
+                    m_LeftHandIkTarget.localRotation = burst.LeftHandIkTransform.localRotation;
+                    m_LeftHandIkRig.weight = 1.0f;
                     break;
             }
             

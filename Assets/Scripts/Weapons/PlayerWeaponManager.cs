@@ -38,6 +38,7 @@ public class PlayerWeaponManager : MonoBehaviour
     void onReloadComplete()
     {
         // invoke an event to weapons singleton to perform reload complete
+        animator.SetLayerWeight(1, 0.0f);
         WeaponsSingleton.Instance.InvokeReloadComplete();
     }
 
@@ -59,8 +60,24 @@ public class PlayerWeaponManager : MonoBehaviour
         if (armedWeapon.WeaponData.ShotConfigration.HandlingType == HandlingType.DualHand)
         {
             animator.SetBool("TwoHanded", true);
-            var k = (FullyAutomaticWeapon)armedWeapon;
-            k.SetWeaponReady();
+            switch(armedWeapon.WeaponData.ShotConfigration.ShotType)
+            {
+                case ShotType.SemiAuto:
+                    var j = (Shotgun)armedWeapon;
+                    j.SetWeaponReady();
+                    break;
+                case ShotType.FullyAuto:
+                    var k = (FullyAutomaticWeapon)armedWeapon;
+                    k.SetWeaponReady();
+                    break;
+                case ShotType.BoltAction:
+                    break;
+                case ShotType.Burst:
+                    var burst = (Burst)armedWeapon;
+                    burst.SetWeaponReady();
+                    break;
+            }
+            
         }
         else
         {
@@ -154,6 +171,7 @@ public class PlayerWeaponManager : MonoBehaviour
         if (starterAssetsInputs.Reload)
         {
             animator.SetTrigger("Reload");
+            animator.SetLayerWeight(1, 1.0f);
         }
 
         if (cooldown)
