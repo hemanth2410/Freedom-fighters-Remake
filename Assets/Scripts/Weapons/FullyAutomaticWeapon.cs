@@ -25,7 +25,6 @@ public class FullyAutomaticWeapon : Weapon
     float spreadFactor;
     CinemachineImpulseSource impulseSource;
     int currentMagCapacity;
-    bool weaponReady;
     protected override void Start()
     {
         base.Start();
@@ -37,11 +36,6 @@ public class FullyAutomaticWeapon : Weapon
         WeaponsSingleton.Instance.RecoilProcessor.SetupTextureRecoil(WeaponData.ShotConfigration.RecoilTexture);
         currentMagCapacity = WeaponData.ShotConfigration.MagCapacity;
         WeaponsSingleton.Instance.ReloadComplete += onReload;
-    }
-
-    public void SetWeaponReady()
-    {
-        weaponReady = true;
     }
     
     void onReload()

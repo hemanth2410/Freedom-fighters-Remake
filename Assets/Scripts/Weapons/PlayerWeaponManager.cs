@@ -99,7 +99,7 @@ public class PlayerWeaponManager : MonoBehaviour
         if(obj.ShotConfigration.HandlingType == HandlingType.DualHand)
         {
             animator.SetBool("TwoHanded", true);
-            var k = (FullyAutomaticWeapon)armedWeapon;
+            var k = armedWeapon;
             k.SetWeaponReady();
         }
         else

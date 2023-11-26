@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1964.5803, g: 2158.7522, b: 3344.0786, a: 1}
+  m_IndirectSpecularColor: {r: 1964.5784, g: 2158.7522, b: 3344.067, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2666,39 +2666,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594705831}
   m_CullTransparentMesh: 1
---- !u!1 &603242519 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1866863028788630, guid: 5056d20a32324e1438d988478b9dc3e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 2031645361}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &603242520
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603242519}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &639576633
 GameObject:
   m_ObjectHideFlags: 0
@@ -9961,6 +9928,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Wep_Preset_A_Rifle_03
       objectReference: {fileID: 0}
+    - target: {fileID: 1142781627598564, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532592066197970, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695848801750176, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798792452758554, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937748833579896, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4075400151191790, guid: f2d3c1000666f4f4083180b2cca9a345, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.148
@@ -10055,7 +10042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0117f9dd207a9804a871863f65a533e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ObjectToPool: {fileID: 6436512207917194967, guid: 17a8896213aec0c468deb08b448d2118,
+  m_ObjectToPool: {fileID: 965119191433979368, guid: c5f516afdf8d4544d9b61e8164e4f087,
     type: 3}
   m_CollectionCheck: 1
   m_MaxPoolSize: 50
@@ -10391,11 +10378,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1866863028788630, guid: 5056d20a32324e1438d988478b9dc3e2,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 603242520}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5056d20a32324e1438d988478b9dc3e2, type: 3}
 --- !u!114 &2033336539
 MonoBehaviour:

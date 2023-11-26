@@ -16,7 +16,8 @@ public class Weapon : MonoBehaviour
     private string originalLayer;
     float resetTimer;
     private LayerMask targetLayer;
-    bool hasChildren;
+    bool hasChildren; 
+    protected bool weaponReady;
     public InventoryItem WeaponData { get { return m_WeaponData; } }
     Transform[] children;
 
@@ -31,6 +32,10 @@ public class Weapon : MonoBehaviour
         hasChildren = transform.childCount > 0;
         if(hasChildren)
             children = transform.GetComponentsInChildren<Transform>();
+    }
+    public void SetWeaponReady()
+    {
+        weaponReady = true;
     }
 
     protected virtual void Update()

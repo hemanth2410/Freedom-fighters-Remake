@@ -12,6 +12,8 @@ public class ShotConfigration : ScriptableObject
     [SerializeField]
     [Tooltip("We typically want IK for two handed and single handed projectile weapons")]
     bool m_RequiresIK = false;
+    [SerializeField] bool m_supportsSecondaryFireMode;
+    [SerializeField] ShotType m_SecondaryShotType;
     [SerializeField] int m_magCapacity;
 
 

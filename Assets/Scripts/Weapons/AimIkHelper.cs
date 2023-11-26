@@ -19,6 +19,7 @@ public class AimIkHelper : MonoBehaviour
     [SerializeField] SharedBoolVariable m_Reload;
     bool requiresLeftHandIKTarget;
     FullyAutomaticWeapon automaticWeapon;
+    Shotgun shotgun;
     RaycastHit hit;
     Camera mainCamera;
     Vector3 aimPosition;
@@ -43,10 +44,26 @@ public class AimIkHelper : MonoBehaviour
         requiresLeftHandIKTarget = WeaponsSingleton.Instance.ArmedWeapon != null && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration.HandlingType == HandlingType.DualHand;
         if (requiresLeftHandIKTarget)
         {
-            automaticWeapon = (FullyAutomaticWeapon)WeaponsSingleton.Instance.ArmedWeapon;
-            m_LeftHandIkTarget.position = automaticWeapon.LeftHandIkTransform.position;
-            m_LeftHandIkTarget.localRotation = automaticWeapon.LeftHandIkTransform.localRotation;
-            m_LeftHandIkRig.weight = 1.0f;
+            switch(WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration.ShotType)
+            {
+                case ShotType.BoltAction:
+                    break;
+                case ShotType.FullyAuto:
+                    automaticWeapon = (FullyAutomaticWeapon)WeaponsSingleton.Instance.ArmedWeapon;
+                    m_LeftHandIkTarget.position = automaticWeapon.LeftHandIkTransform.position;
+                    m_LeftHandIkTarget.localRotation = automaticWeapon.LeftHandIkTransform.localRotation;
+                    m_LeftHandIkRig.weight = 1.0f;
+                    break;
+                case ShotType.SemiAuto:
+                    shotgun = (Shotgun)WeaponsSingleton.Instance.ArmedWeapon;
+                    m_LeftHandIkTarget.position = shotgun.LeftHandIkTransform.position;
+                    m_LeftHandIkTarget.localRotation = shotgun.LeftHandIkTransform.localRotation;
+                    m_LeftHandIkRig.weight = 1.0f;
+                    break;
+                case ShotType.Burst:
+                    break;
+            }
+            
         }
         else
         {
