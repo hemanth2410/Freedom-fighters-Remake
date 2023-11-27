@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596bfae05d84b7b43848ec337150939d, type: 3}
+  m_Name: Pump action Shotgun
+  m_EditorClassIdentifier: 
+  m_NearClips:
+  - {fileID: 8300000, guid: 1df1429981f76644097c7fd47fc5f239, type: 3}
+  - {fileID: 8300000, guid: 517cb4111b60bc444813bbc62a479e05, type: 3}
+  - {fileID: 8300000, guid: 6349a640dc07c3b4389c205f5b5a5145, type: 3}
+  m_FarClips:
+  - {fileID: 8300000, guid: bd67058a6079faf40b2dbfb35ea160b1, type: 3}
+  - {fileID: 8300000, guid: d4226b8c168232d41b75369019068706, type: 3}
+  - {fileID: 8300000, guid: 5e00c8451ea2f524faf2f8a6aa900971, type: 3}
+  m_Loop: {fileID: 0}
+  m_Trail: {fileID: 0}

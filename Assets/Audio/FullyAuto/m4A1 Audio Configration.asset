@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596bfae05d84b7b43848ec337150939d, type: 3}
+  m_Name: m4A1 Audio Configration
+  m_EditorClassIdentifier: 
+  m_NearClips:
+  - {fileID: 8300000, guid: 1b145bcffd767854fb0c71c37678ebaa, type: 3}
+  - {fileID: 8300000, guid: f19e3fdb9c8082647a2c32beca28ba84, type: 3}
+  m_FarClips:
+  - {fileID: 8300000, guid: 8b76cff51a7d7e844b0adf5da4371ec6, type: 3}
+  - {fileID: 8300000, guid: 7e0c321a53b744a4c93fd44a27213a48, type: 3}
+  m_Loop: {fileID: 8300000, guid: 48283adefda01514e851c40517a63d59, type: 3}
+  m_Trail: {fileID: 8300000, guid: 79ee7751ab191f548b7f3232381afa0a, type: 3}

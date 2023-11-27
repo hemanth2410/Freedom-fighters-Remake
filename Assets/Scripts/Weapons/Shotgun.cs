@@ -21,6 +21,7 @@ public class Shotgun : Weapon
     float spreadFactor;
     CinemachineImpulseSource impulseSource;
     int currentMagCapacity;
+    WeaponAudioSystem audioSystem;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -33,6 +34,7 @@ public class Shotgun : Weapon
         timeBetweenShots = 1.2f;
         impulseSource = GetComponent<CinemachineImpulseSource>();
         WeaponsSingleton.Instance.RecoilProcessor.SetupTextureRecoil(WeaponData.ShotConfigration.RecoilTexture);
+        audioSystem = GetComponentInChildren<WeaponAudioSystem>();
     }
 
     private void onReload()
@@ -73,6 +75,8 @@ public class Shotgun : Weapon
                 bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, false, 0.28f, 0);
             }
             impulseSource.GenerateImpulse();
+            audioSystem.PlayShotAudio(WeaponData.AudioConfigration.NearClip);
+            audioSystem.PlayShotAudio(WeaponData.AudioConfigration.FarClip);
         }
         if (inputs != null && !inputs.Attack && !fireSystem.isStopped)
         {

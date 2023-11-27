@@ -12,6 +12,7 @@ public class InventoryItem : ScriptableObject
     //[SerializeField][Tooltip("We typically want IK for two handed and single handed projectile weapons")] 
     //bool m_RequiresIK = false;
     [SerializeField] ShotConfigration m_shotConfigration;
+    [SerializeField] AudioConfigration m_audioConfigration;
     [SerializeField] string m_inventoryItemName;
     [SerializeField][TextArea(2, 5)] string m_inventoryItemDescription;
     [SerializeField] Vector3 m_positionOffset;
@@ -26,4 +27,5 @@ public class InventoryItem : ScriptableObject
     public Vector3 PositionOffset { get {  return m_positionOffset; } }
     public Vector3 RotationOffset { get { return m_rotationOffset; } }
     public ShotConfigration ShotConfigration {get { return m_shotConfigration; } }
+    public AudioConfigration AudioConfigration { get {  return m_audioConfigration; } }
 }

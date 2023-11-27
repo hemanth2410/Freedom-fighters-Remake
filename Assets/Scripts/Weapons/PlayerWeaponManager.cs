@@ -57,7 +57,7 @@ public class PlayerWeaponManager : MonoBehaviour
         armedWeapon.gameObject.SetActive(true);
         setArmedWeaponInWeaponsSingleton(armedWeapon);
         isArmed = true;
-        if (armedWeapon.WeaponData.ShotConfigration.HandlingType == HandlingType.DualHand)
+        if (armedWeapon.WeaponData.ItemType == InventoryItemType.FireArm && armedWeapon.WeaponData.ShotConfigration != null && armedWeapon.WeaponData.ShotConfigration.HandlingType == HandlingType.DualHand)
         {
             animator.SetBool("TwoHanded", true);
             switch(armedWeapon.WeaponData.ShotConfigration.ShotType)
@@ -113,16 +113,24 @@ public class PlayerWeaponManager : MonoBehaviour
         setArmedWeaponInWeaponsSingleton(armedWeapon);
         pickedWeapons[obj.InventoryItemName] = _k;
         isArmed = true;
-        if(obj.ShotConfigration.HandlingType == HandlingType.DualHand)
+        if(obj.ItemType == InventoryItemType.FireArm)
         {
-            animator.SetBool("TwoHanded", true);
-            var k = armedWeapon;
-            k.SetWeaponReady();
+            if (obj.ShotConfigration.HandlingType == HandlingType.DualHand)
+            {
+                animator.SetBool("TwoHanded", true);
+                var k = armedWeapon;
+                k.SetWeaponReady();
+            }
+            else
+            {
+                animator.SetBool("TwoHanded", false);
+            }
         }
         else
         {
             animator.SetBool("TwoHanded", false);
         }
+        
         currentIndex = playerInventory.Inventory.usableWeapons.IndexOf(obj);
         
     }
@@ -201,7 +209,7 @@ public class PlayerWeaponManager : MonoBehaviour
                 default: break;
             }
         }
-        if (timer < 0.0f)
+        if (timer < 0.0f && armedWeapon.WeaponData.ItemType == InventoryItemType.Melee)
         {
             cooldown = false;
             animator.SetBool("Attack", false);

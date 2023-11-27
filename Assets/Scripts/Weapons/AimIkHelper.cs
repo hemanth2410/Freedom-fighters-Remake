@@ -42,7 +42,7 @@ public class AimIkHelper : MonoBehaviour
             return;
         }
 
-        requiresLeftHandIKTarget = WeaponsSingleton.Instance.ArmedWeapon != null && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration.HandlingType == HandlingType.DualHand;
+        requiresLeftHandIKTarget = WeaponsSingleton.Instance.ArmedWeapon != null && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ItemType == InventoryItemType.FireArm && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration.HandlingType == HandlingType.DualHand;
         if (requiresLeftHandIKTarget)
         {
             switch(WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration.ShotType)
@@ -66,6 +66,9 @@ public class AimIkHelper : MonoBehaviour
                     m_LeftHandIkTarget.position = burst.LeftHandIkTransform.position;
                     m_LeftHandIkTarget.localRotation = burst.LeftHandIkTransform.localRotation;
                     m_LeftHandIkRig.weight = 1.0f;
+                    break;
+                default:
+                    m_LeftHandIkRig.weight = 0.0f;
                     break;
             }
             

@@ -24,6 +24,7 @@ public class Burst : Weapon
     int currentMagCapacity;
     bool weaponLocked;
     int shotsRemaining;
+    WeaponAudioSystem weaponAudioSystem;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -36,6 +37,7 @@ public class Burst : Weapon
         WeaponsSingleton.Instance.ReloadComplete += onReload;
         impulseSource = GetComponent<CinemachineImpulseSource>();
         WeaponsSingleton.Instance.RecoilProcessor.SetupTextureRecoil(WeaponData.ShotConfigration.RecoilTexture);
+        weaponAudioSystem = GetComponentInChildren<WeaponAudioSystem>();
     }
 
     private void onReload()
@@ -82,12 +84,15 @@ public class Burst : Weapon
             bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, true, 0.28f, spreadFactor);
             currentMagCapacity--;
             impulseSource.GenerateImpulse();
+            weaponAudioSystem.PlayShotAudio(WeaponData.AudioConfigration.NearClip);
+            weaponAudioSystem.playFarAudio(WeaponData.AudioConfigration.FarClip);
         }
         if(shotsRemaining <= 0)
         {
             fireSystem.Stop();
             shells.Stop();
             spreadFactor = 0.0f;
+            weaponAudioSystem.PlayTrailSound(WeaponData.AudioConfigration.Trail);
         }
         if (inputs != null && !inputs.Attack && !fireSystem.isStopped)
         {
