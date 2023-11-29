@@ -12,6 +12,7 @@ public class PlayerWeaponManager : MonoBehaviour
     [SerializeField] float m_coolDown;
     [SerializeField] Transform m_DropTransform;
     [SerializeField] SharedBoolVariable m_AimSharedBool;
+    [SerializeField] SharedBoolVariable m_SniperSharedBool;
     PlayerInventory playerInventory;
     Animator animator;
     StarterAssetsInputs starterAssetsInputs;
@@ -32,7 +33,6 @@ public class PlayerWeaponManager : MonoBehaviour
         WeaponsSingleton.Instance.WeaponPicked += Instance_WeaponPicked;
         WeaponsSingleton.Instance.DropWeapon += dropWeapon;
         WeaponsSingleton.Instance.SwitchWeapon += Instance_SwitchWeapon;
-        
     }
 
     void onReloadComplete()
@@ -40,6 +40,7 @@ public class PlayerWeaponManager : MonoBehaviour
         // invoke an event to weapons singleton to perform reload complete
         animator.SetLayerWeight(1, 0.0f);
         WeaponsSingleton.Instance.InvokeReloadComplete();
+
     }
 
     private void Instance_SwitchWeapon(int value)
@@ -71,6 +72,8 @@ public class PlayerWeaponManager : MonoBehaviour
                     k.SetWeaponReady();
                     break;
                 case ShotType.BoltAction:
+                    var boltAction = (BoltAction)armedWeapon;
+                    boltAction.SetWeaponReady();
                     break;
                 case ShotType.Burst:
                     var burst = (Burst)armedWeapon;

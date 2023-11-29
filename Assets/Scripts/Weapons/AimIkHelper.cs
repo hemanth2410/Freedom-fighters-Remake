@@ -1,3 +1,5 @@
+using StarterAssets;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,17 +19,28 @@ public class AimIkHelper : MonoBehaviour
     [SerializeField] SharedVector3Variable m_AimSharedVector3;
     [SerializeField] LayerMask m_AimLayers;
     [SerializeField] SharedBoolVariable m_Reload;
+    StarterAssetsInputs inputs;
     bool requiresLeftHandIKTarget;
     FullyAutomaticWeapon automaticWeapon;
     Shotgun shotgun;
     Burst burst;
+    BoltAction boltAction;
     RaycastHit hit;
     Camera mainCamera;
     Vector3 aimPosition;
+    bool inReload;
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
+        WeaponsSingleton.Instance.ReloadComplete += onReload;
+        inputs = GetComponent<StarterAssetsInputs>();
+    }
+
+    private void onReload()
+    {
+        inReload = false;
+        m_LeftHandIkRig.weight = 1.0f;
     }
 
     // Update is called once per frame
@@ -39,15 +52,23 @@ public class AimIkHelper : MonoBehaviour
             m_HeadIK.weight = 0.0f;
             m_SpineIK.weight = 0f;
             m_RigToEnable.weight = 0.0f;
+            inReload = true;
             return;
         }
-
+        if(inputs.Reload)
+        {
+            inReload = true;
+        }
         requiresLeftHandIKTarget = WeaponsSingleton.Instance.ArmedWeapon != null && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ItemType == InventoryItemType.FireArm && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration.HandlingType == HandlingType.DualHand;
-        if (requiresLeftHandIKTarget)
+        if (requiresLeftHandIKTarget && !inReload)
         {
             switch(WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration.ShotType)
             {
                 case ShotType.BoltAction:
+                    boltAction = (BoltAction)WeaponsSingleton.Instance.ArmedWeapon;
+                    m_LeftHandIkTarget.position = boltAction.LeftHandIkTransform.position;
+                    m_LeftHandIkTarget.localRotation = boltAction.LeftHandIkTransform.localRotation;
+                    m_LeftHandIkRig.weight = 1.0f;
                     break;
                 case ShotType.FullyAuto:
                     automaticWeapon = (FullyAutomaticWeapon)WeaponsSingleton.Instance.ArmedWeapon;

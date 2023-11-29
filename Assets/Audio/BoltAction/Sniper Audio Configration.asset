@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596bfae05d84b7b43848ec337150939d, type: 3}
+  m_Name: Sniper Audio Configration
+  m_EditorClassIdentifier: 
+  m_NearClips:
+  - {fileID: 8300000, guid: fecc3e7a0166a104cb810435f6fdf37b, type: 3}
+  - {fileID: 8300000, guid: 5802cc242c56cfa47a4b9ac4bb747662, type: 3}
+  - {fileID: 8300000, guid: 8af9b84117aab4a48ba134e04951246a, type: 3}
+  m_FarClips:
+  - {fileID: 8300000, guid: ad9869d4800c2eb4d96fe6af321889da, type: 3}
+  - {fileID: 8300000, guid: f977343db9b66614bb8c597d7f056c3b, type: 3}
+  - {fileID: 8300000, guid: 4cf5890d3d7b62049a4c759a2d2dbe16, type: 3}
+  m_Loop: {fileID: 0}
+  m_Trail: {fileID: 0}
