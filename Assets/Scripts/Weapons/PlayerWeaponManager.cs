@@ -58,29 +58,38 @@ public class PlayerWeaponManager : MonoBehaviour
         armedWeapon.gameObject.SetActive(true);
         setArmedWeaponInWeaponsSingleton(armedWeapon);
         isArmed = true;
+        getWraponReady();
+    }
+
+    void getWraponReady()
+    {
         if (armedWeapon.WeaponData.ItemType == InventoryItemType.FireArm && armedWeapon.WeaponData.ShotConfigration != null && armedWeapon.WeaponData.ShotConfigration.HandlingType == HandlingType.DualHand)
         {
             animator.SetBool("TwoHanded", true);
-            switch(armedWeapon.WeaponData.ShotConfigration.ShotType)
+            switch (armedWeapon.WeaponData.ShotConfigration.ShotType)
             {
                 case ShotType.SemiAuto:
                     var j = (Shotgun)armedWeapon;
                     j.SetWeaponReady();
+                    m_SniperSharedBool.SetValue(false);
                     break;
                 case ShotType.FullyAuto:
                     var k = (FullyAutomaticWeapon)armedWeapon;
                     k.SetWeaponReady();
+                    m_SniperSharedBool.SetValue(false);
                     break;
                 case ShotType.BoltAction:
                     var boltAction = (BoltAction)armedWeapon;
                     boltAction.SetWeaponReady();
+                    m_SniperSharedBool.SetValue(true);
                     break;
                 case ShotType.Burst:
                     var burst = (Burst)armedWeapon;
                     burst.SetWeaponReady();
+                    m_SniperSharedBool.SetValue(false);
                     break;
             }
-            
+
         }
         else
         {
@@ -122,7 +131,8 @@ public class PlayerWeaponManager : MonoBehaviour
             {
                 animator.SetBool("TwoHanded", true);
                 var k = armedWeapon;
-                k.SetWeaponReady();
+                getWraponReady();
+                //k.SetWeaponReady();
             }
             else
             {

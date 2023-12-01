@@ -16,6 +16,8 @@ public class BoltAction : Weapon
     [SerializeField] ParticleSystem shells;
     [SerializeField] ParticleSystem snierLine; 
     [SerializeField] SharedBoolVariable m_ReloadReticle;
+    [SerializeField] SharedVector3Variable m_SharedPosition;
+    [SerializeField] Transform m_CameraMountTransform;
     float timeBetweenShots;
     float lastshotTime;
     float spreadFactor;
@@ -35,6 +37,7 @@ public class BoltAction : Weapon
         WeaponsSingleton.Instance.ReloadComplete += onReload;
         WeaponsSingleton.Instance.RecoilProcessor.SetupTextureRecoil(WeaponData.ShotConfigration.RecoilTexture);
         weaponAudioSystem = GetComponentInChildren<WeaponAudioSystem>();
+        //m_SniperSharedBool.SetValue(true);
     }
 
     private void onReload()
@@ -54,6 +57,7 @@ public class BoltAction : Weapon
         base.Update();
         if (!weaponReady)
             return;
+        m_SharedPosition.SetValue(m_CameraMountTransform.position);
         if (currentMagCapacity <= 0)
         {
             weaponLocked = false;
@@ -86,5 +90,9 @@ public class BoltAction : Weapon
             shells.Stop();
             spreadFactor = 0.0f;
         }
+    }
+    private void OnDestroy()
+    {
+        //m_SniperSharedBool.SetValue(false);
     }
 }

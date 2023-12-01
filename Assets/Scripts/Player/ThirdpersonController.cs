@@ -63,6 +63,7 @@ public class ThirdpersonController : MonoBehaviour
     [Header("Cinemachine")]
     [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
     [SerializeField] GameObject m_cinemachineCameraTarget;
+    [SerializeField] GameObject m_CinemachineSniperTarget;
 
     [Tooltip("How far in degrees can you move the camera up")]
     [SerializeField] float m_topClamp = 70.0f;
@@ -317,6 +318,7 @@ public class ThirdpersonController : MonoBehaviour
         cinemachineTargetYaw = ClampAngle(cinemachineTargetYaw, float.MinValue, float.MaxValue);
         cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, m_bottomClamp, m_topClamp);
         m_cinemachineCameraTarget.transform.rotation = Quaternion.Euler(cinemachineTargetPitch + m_cameraAngleOverride, cinemachineTargetYaw, 0.0f);
+        m_CinemachineSniperTarget.transform.rotation = Quaternion.Euler(cinemachineTargetPitch + m_cameraAngleOverride, cinemachineTargetYaw, 0.0f);
     }
 
     private float ClampAngle(float lfAngle, float lfMin, float lfMax)
