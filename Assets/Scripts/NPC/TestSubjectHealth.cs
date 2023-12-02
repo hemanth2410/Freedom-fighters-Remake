@@ -42,6 +42,32 @@ public class TestSubjectHealth : MonoBehaviour
         }
         
     }
+    public void TakeBulletDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0.0f)
+        {
+            foreach (var b in ragdollBodies)
+            {
+                b.isKinematic = false;
+            }
+            animator.enabled = false;
+            // Now add force.
+        }
+    }
+    public void TakeAbsoluteDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0.0f)
+        {
+            foreach (var b in ragdollBodies)
+            {
+                b.isKinematic = false;
+            }
+            animator.enabled = false;
+            // Now add force.
+        }
+    }
     public void TakeDamage(float damage)
     {
         health -= damage * Time.deltaTime;

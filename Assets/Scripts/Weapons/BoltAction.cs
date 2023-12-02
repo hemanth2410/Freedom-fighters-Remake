@@ -17,6 +17,7 @@ public class BoltAction : Weapon
     [SerializeField] ParticleSystem snierLine; 
     [SerializeField] SharedBoolVariable m_ReloadReticle;
     [SerializeField] SharedVector3Variable m_SharedPosition;
+    [SerializeField] SharedVector3Variable m_AimPosition; 
     [SerializeField] Transform m_CameraMountTransform;
     float timeBetweenShots;
     float lastshotTime;
@@ -57,6 +58,12 @@ public class BoltAction : Weapon
         base.Update();
         if (!weaponReady)
             return;
+        if (inputs.Aim)
+        {
+            transform.LookAt(m_AimPosition.Value);
+            Debug.DrawLine(m_FireTransform.position, m_AimPosition.Value, Color.magenta);
+        }
+            
         m_SharedPosition.SetValue(m_CameraMountTransform.position);
         if (currentMagCapacity <= 0)
         {
@@ -80,6 +87,7 @@ public class BoltAction : Weapon
             bullet.SetActive(true);
             bullet.transform.forward = m_FireTransform.forward;
             bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, true, 0.4f, 0.0f);
+            bullet.GetComponent<Bullet>().SetDamage(500.0f, true);
             weaponAudioSystem.PlayShotAudio(WeaponData.AudioConfigration.NearClip);
             weaponAudioSystem.PlayShotAudio(WeaponData.AudioConfigration.FarClip);
             weaponLocked = true;

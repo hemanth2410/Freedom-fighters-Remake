@@ -73,6 +73,7 @@ public class Shotgun : Weapon
                 bullet.transform.forward = m_FireTransform.forward + offset * m_MaxSpread * m_MaxSpread;
                 //bullet.transform.forward += transform.TransformDirection(offset);
                 bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, false, 0.28f, 0);
+                bullet.GetComponent<Bullet>().SetDamage(40);
             }
             impulseSource.GenerateImpulse();
             audioSystem.PlayShotAudio(WeaponData.AudioConfigration.NearClip);

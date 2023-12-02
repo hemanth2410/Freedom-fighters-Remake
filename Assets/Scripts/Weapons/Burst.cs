@@ -82,18 +82,19 @@ public class Burst : Weapon
             spreadFactor = Mathf.Clamp(spreadFactor, 0.0f, m_MaxSpread);
             bullet.transform.forward = m_FireTransform.forward;
             bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, true, 0.28f, spreadFactor);
+            bullet.GetComponent<Bullet>().SetDamage(40);
             currentMagCapacity--;
             impulseSource.GenerateImpulse();
             weaponAudioSystem.PlayShotAudio(WeaponData.AudioConfigration.NearClip);
             weaponAudioSystem.playFarAudio(WeaponData.AudioConfigration.FarClip);
         }
-        if(shotsRemaining <= 0)
-        {
-            fireSystem.Stop();
-            shells.Stop();
-            spreadFactor = 0.0f;
-            weaponAudioSystem.PlayTrailSound(WeaponData.AudioConfigration.Trail);
-        }
+        //if(shotsRemaining <= 0)
+        //{
+        //    fireSystem.Stop();
+        //    shells.Stop();
+        //    spreadFactor = 0.0f;
+        //    weaponAudioSystem.PlayTrailSound(WeaponData.AudioConfigration.Trail);
+        //}
         if (inputs != null && !inputs.Attack && !fireSystem.isStopped)
         {
             weaponLocked = false;

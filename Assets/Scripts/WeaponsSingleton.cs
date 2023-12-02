@@ -23,6 +23,7 @@ public class WeaponsSingleton : MonoBehaviour
     Weapon armedWeapon;
     IObjectPool<GameObject> bulletPool;
     IObjectPool<GameObject> decalPool;
+    IObjectPool<GameObject> bloodPool;
     Recoil recoilProcessor;
     public Weapon ArmedWeapon { get { return armedWeapon; } }
     public Weapon WeaponToShare { get { return weaponToShare; } }
@@ -36,6 +37,7 @@ public class WeaponsSingleton : MonoBehaviour
     public event Action ReloadComplete;
     public IObjectPool<GameObject> BulletPool { get { return bulletPool; } }
     public IObjectPool<GameObject> DecalPool { get { return decalPool; } }
+    public IObjectPool<GameObject> BloodPool { get { return bloodPool; } }
     public Recoil RecoilProcessor { get {  return recoilProcessor; } }
     // Start is called before the first frame update
     void Start()
@@ -86,6 +88,10 @@ public class WeaponsSingleton : MonoBehaviour
     public void RegisterDecalPool(IObjectPool<GameObject> pool)
     {
         decalPool = pool;
+    }
+    public void RegisterBloodPool(IObjectPool<GameObject> pool)
+    {
+        bloodPool = pool;
     }
     public void RegisterRecoilProcessor(Recoil recoil)
     {

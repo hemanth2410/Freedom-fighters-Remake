@@ -87,11 +87,13 @@ public class FullyAutomaticWeapon : Weapon
                 case RecoilType.Simple:
                     bullet.transform.forward = m_FireTransform.forward;
                     bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, true, 0.28f, spreadFactor);
+                    bullet.GetComponent<Bullet>().SetDamage(40);
                     break;
                 case RecoilType.Texture:
                     bullet.transform.forward = m_FireTransform.forward;
                     Vector3 _recoil = WeaponsSingleton.Instance.RecoilProcessor.GetRecoil(spreadFactor / m_MaxSpread).normalized;
                     bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, _recoil * 0.01f, true, 0.28f);
+                    bullet.GetComponent<Bullet>().SetDamage(40);
                     break;
             }
             //bullet.transform.forward = m_FireTransform.forward;

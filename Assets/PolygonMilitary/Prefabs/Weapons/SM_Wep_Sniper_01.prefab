@@ -251,9 +251,10 @@ MonoBehaviour:
   m_FireTransform: {fileID: 6551449955580678940}
   fireSystem: {fileID: 6106768734646674116}
   shells: {fileID: 1201799006233681433}
-  snierLine: {fileID: 4778675664252376446}
+  snierLine: {fileID: 6106768734646674116}
   m_ReloadReticle: {fileID: 11400000, guid: 37e319dd84b711141a68380d4f258d78, type: 2}
   m_SharedPosition: {fileID: 11400000, guid: 2390eb45ae290b54a846fc862f2c2554, type: 2}
+  m_AimPosition: {fileID: 11400000, guid: 501b74eeb3c21864b82a6c558715dfee, type: 2}
   m_CameraMountTransform: {fileID: 6868802170004155883}
 --- !u!114 &4153599414586876572
 MonoBehaviour:
@@ -1189,12 +1190,6 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
---- !u!198 &4778675664252376446 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198381425572196190, guid: 07277f9efe2374047bf57bdba847e02b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4652657024546716192}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6232454349661537504
 PrefabInstance:
   m_ObjectHideFlags: 0
