@@ -17,6 +17,7 @@ public class InventoryItem : ScriptableObject
     [SerializeField][TextArea(2, 5)] string m_inventoryItemDescription;
     [SerializeField] Vector3 m_positionOffset;
     [SerializeField] Vector3 m_rotationOffset;
+    [SerializeField] Sprite m_sprite;
     public GameObject InventoryItemPrefab { get { return m_inventoryItemPrefab; } }
     public InventoryItemType ItemType { get {  return m_itemType; } }
     //public HandlingType HandlingType { get { return m_handlingType; } }
@@ -28,4 +29,5 @@ public class InventoryItem : ScriptableObject
     public Vector3 RotationOffset { get { return m_rotationOffset; } }
     public ShotConfigration ShotConfigration {get { return m_shotConfigration; } }
     public AudioConfigration AudioConfigration { get {  return m_audioConfigration; } }
+    public Sprite InventorySprite { get { return m_sprite; } }
 }

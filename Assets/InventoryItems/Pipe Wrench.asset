@@ -15,9 +15,8 @@ MonoBehaviour:
   m_inventoryItemPrefab: {fileID: 1062937431589126, guid: 0f663491bf1f68543950ae9b14c34dce,
     type: 3}
   m_itemType: 1
-  m_shotType: 1
-  m_handlingType: 0
-  m_RequiresIK: 0
+  m_shotConfigration: {fileID: 0}
+  m_audioConfigration: {fileID: 0}
   m_inventoryItemName: Pipe Wrench
   m_inventoryItemDescription: 'In a world where survival is paramount, The Unyielding
     Bastion shines as a trusty companion. Whether you''re battling hostile entities
@@ -31,3 +30,4 @@ MonoBehaviour:
     crucial to remember that real-world safety and ethics should always be prioritized.</i></b>'
   m_positionOffset: {x: 0.09, y: 0.033, z: -0.118}
   m_rotationOffset: {x: 0, y: 180, z: -90}
+  m_sprite: {fileID: -1576132794, guid: 6291e774f58f2564f8770d7235860393, type: 3}

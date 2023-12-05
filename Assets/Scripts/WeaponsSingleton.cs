@@ -35,6 +35,8 @@ public class WeaponsSingleton : MonoBehaviour
     public event Action<InventoryItem> DropWeapon;
     public event Action<int> SwitchWeapon;
     public event Action ReloadComplete;
+    public event Action<Sprite, string> AddItemToInventory;
+    public event Action<Sprite, string> DropItemFromInventory;
     public IObjectPool<GameObject> BulletPool { get { return bulletPool; } }
     public IObjectPool<GameObject> DecalPool { get { return decalPool; } }
     public IObjectPool<GameObject> BloodPool { get { return bloodPool; } }
@@ -101,5 +103,14 @@ public class WeaponsSingleton : MonoBehaviour
     public void InvokeReloadComplete()
     {
         ReloadComplete?.Invoke();
+    }
+
+    public void InvokeAddItemToInventoryUI(Sprite sprite, string label)
+    {
+        AddItemToInventory?.Invoke(sprite, label);
+    }
+    public void InvokeDropInventoryItemUI(Sprite sprite, string label)
+    {
+        DropItemFromInventory?.Invoke(sprite, label);
     }
 }

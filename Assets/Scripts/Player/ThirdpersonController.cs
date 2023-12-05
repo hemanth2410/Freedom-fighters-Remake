@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 #endif
 
 [RequireComponent(typeof(CharacterController))]
@@ -189,7 +190,8 @@ public class ThirdpersonController : MonoBehaviour
     {
         Vector2 _screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
         Ray _ray = activeCamera.ScreenPointToRay(_screenCenter);
-        if (Physics.Raycast(_ray, out RaycastHit hit, 150f, m_aimLayers))
+        // A good addition can be if the player is holding a sniper rifle may be increase it to 1000m
+        if (Physics.Raycast(_ray, out RaycastHit hit, 1000f, m_aimLayers))
         {
             aimPosition = hit.point;
             m_AimPosition.SetValue(hit.point);
@@ -197,7 +199,7 @@ public class ThirdpersonController : MonoBehaviour
         }
         else
         {
-            aimPosition = mainCamera.transform.forward * 150.0f;
+            aimPosition = mainCamera.transform.forward * 1000.0f;
             m_AimPosition.SetValue(aimPosition);
             m_aimPositionTransform.position = aimPosition;
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,15 @@ public class InputActionEventDispatcher : MonoBehaviour
 
     private void Inputs_onActionTriggered(InputAction.CallbackContext obj)
     {
-        if (!inputs.isActiveAndEnabled) return;
-        SendMessage($"On{obj.action.name}", obj, SendMessageOptions.RequireReceiver);
+        try
+        {
+            if (!inputs.isActiveAndEnabled) return;
+            SendMessage($"On{obj.action.name}", obj, SendMessageOptions.RequireReceiver);
+        }
+        catch(Exception ex)
+        {
+
+        }
+        
     }
 }

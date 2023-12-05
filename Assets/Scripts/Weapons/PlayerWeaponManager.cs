@@ -111,6 +111,7 @@ public class PlayerWeaponManager : MonoBehaviour
             _j.gameObject.layer = LayerMask.NameToLayer("Melee");
             _j.SetActive(false);
             pickedWeapons[obj.InventoryItemName] = _j;
+            WeaponsSingleton.Instance.InvokeAddItemToInventoryUI(obj.InventorySprite, obj.InventoryItemName);
             return;
         }
         var _k = Instantiate(obj.InventoryItemPrefab, m_handBone);
@@ -124,6 +125,7 @@ public class PlayerWeaponManager : MonoBehaviour
         armedWeapon = _k.GetComponent<Weapon>();
         setArmedWeaponInWeaponsSingleton(armedWeapon);
         pickedWeapons[obj.InventoryItemName] = _k;
+        WeaponsSingleton.Instance.InvokeAddItemToInventoryUI(obj.InventorySprite, obj.InventoryItemName);
         isArmed = true;
         if(obj.ItemType == InventoryItemType.FireArm)
         {
@@ -177,11 +179,13 @@ public class PlayerWeaponManager : MonoBehaviour
 
     void dropWeapon(InventoryItem obj)
     {
+
         if(armedWeapon.WeaponData.ItemType == obj.ItemType)
         {
             Destroy(armedWeapon.gameObject);
             isArmed = false;
         }
+        WeaponsSingleton.Instance.InvokeDropInventoryItemUI(obj.InventorySprite, obj.InventoryItemName);
         pickedWeapons.Remove(obj.InventoryItemName);
         var k = Instantiate(obj.InventoryItemPrefab, m_DropTransform.position, m_DropTransform.rotation);
         k.GetComponent<Rigidbody>().AddForce(m_DropTransform.forward * 10.0f);

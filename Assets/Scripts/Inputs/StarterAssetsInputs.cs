@@ -18,6 +18,7 @@ namespace StarterAssets
         public bool Pickup;
         public bool Attack;
         public bool Reload;
+        public bool Inventory;
         public float ScrollDirection;
         [Header("Movement Settings")]
         public bool AnalogMovement;
@@ -86,7 +87,51 @@ namespace StarterAssets
             Reload = context.performed;
         }
 
+        public void OnInventory(InputAction.CallbackContext context)
+        {
+            Inventory = context.performed;
+            if(context.started)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            if(context.canceled)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
 
+        public void OnNavigate(InputAction.CallbackContext context)
+        {
+
+        }
+        public void OnSubmit(InputAction.CallbackContext context)
+        {
+
+        }
+        public void OnCancel(InputAction.CallbackContext context)
+        {
+
+        }
+        public void OnPoint(InputAction.CallbackContext context)
+        {
+
+        }
+        public void OnClick(InputAction.CallbackContext context)
+        {
+
+        }
+        public void OnScrollWheel(InputAction.CallbackContext context)
+        {
+
+        }
+        public void OnMiddleClick(InputAction.CallbackContext context)
+        {
+
+        }
+        public void OnRightClick(InputAction.CallbackContext context)
+        {
+
+        }
 #endif
         private void attackInput(bool performed)
         {
