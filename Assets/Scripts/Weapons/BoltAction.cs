@@ -26,6 +26,7 @@ public class BoltAction : Weapon
     int currentMagCapacity;
     bool weaponLocked;
     WeaponAudioSystem weaponAudioSystem;
+    Camera mainCamera;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -38,6 +39,7 @@ public class BoltAction : Weapon
         WeaponsSingleton.Instance.ReloadComplete += onReload;
         WeaponsSingleton.Instance.RecoilProcessor.SetupTextureRecoil(WeaponData.ShotConfigration.RecoilTexture);
         weaponAudioSystem = GetComponentInChildren<WeaponAudioSystem>();
+        mainCamera = Camera.main;
         //m_SniperSharedBool.SetValue(true);
     }
 
@@ -85,8 +87,8 @@ public class BoltAction : Weapon
             impulseSource.GenerateImpulse();
             var bullet = WeaponsSingleton.Instance.BulletPool.Get();
             bullet.SetActive(true);
-            bullet.transform.forward = m_FireTransform.forward;
-            bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, m_FireTransform.position, 3.0f, true, 0.4f, 0.0f);
+            bullet.transform.forward = mainCamera.transform.forward;
+            bullet.GetComponent<Bullet>().SetupBullet(m_MuzzleVelosity, mainCamera.transform.position, 3.0f, true, 0.4f, 0.0f);
             bullet.GetComponent<Bullet>().SetDamage(500.0f, true);
             weaponAudioSystem.PlayShotAudio(WeaponData.AudioConfigration.NearClip);
             weaponAudioSystem.PlayShotAudio(WeaponData.AudioConfigration.FarClip);
