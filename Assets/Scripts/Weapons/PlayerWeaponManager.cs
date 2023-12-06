@@ -40,7 +40,6 @@ public class PlayerWeaponManager : MonoBehaviour
         // invoke an event to weapons singleton to perform reload complete
         animator.SetLayerWeight(1, 0.0f);
         WeaponsSingleton.Instance.InvokeReloadComplete();
-
     }
 
     private void Instance_SwitchWeapon(int value)
@@ -94,6 +93,17 @@ public class PlayerWeaponManager : MonoBehaviour
         else
         {
             animator.SetBool("TwoHanded", false);
+            if (armedWeapon.WeaponData.ItemType != InventoryItemType.Melee)
+            {
+                switch (armedWeapon.WeaponData.ShotConfigration.ShotType)
+                {
+                    case ShotType.SemiAuto:
+                        var s = (SemiAutoWeapons)armedWeapon;
+                        s.SetWeaponReady();
+                        m_SniperSharedBool.SetValue(false);
+                        break;
+                }
+            }
         }
     }
 
@@ -139,6 +149,8 @@ public class PlayerWeaponManager : MonoBehaviour
             else
             {
                 animator.SetBool("TwoHanded", false);
+                var k = armedWeapon;
+                getWraponReady();
             }
         }
         else

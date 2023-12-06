@@ -15,12 +15,13 @@ MonoBehaviour:
   m_inventoryItemPrefab: {fileID: 1252744804793604, guid: 191a40a97567c454dad88aa6ea16ac71,
     type: 3}
   m_itemType: 0
-  m_shotType: 1
-  m_handlingType: 0
-  m_RequiresIK: 1
+  m_shotConfigration: {fileID: 11400000, guid: 67233e4133e615d4ba13b19569f9b541, type: 2}
+  m_audioConfigration: {fileID: 11400000, guid: 0e44cc7e53e9f024ea4665c62a1f9149,
+    type: 2}
   m_inventoryItemName: Standard 9MM
   m_inventoryItemDescription: Always remember <b>Switching to secondary weapon</b>
     is always faster than reloading primary weapon when need arrives. A standard
     9mm is lethal in close range if shot perfectly.
   m_positionOffset: {x: 0.0956, y: 0.0173, z: -0.0438}
-  m_rotationOffset: {x: -171.45, y: -90, z: 90}
+  m_rotationOffset: {x: 180, y: -90, z: 90}
+  m_sprite: {fileID: -1128383305, guid: 6291e774f58f2564f8770d7235860393, type: 3}

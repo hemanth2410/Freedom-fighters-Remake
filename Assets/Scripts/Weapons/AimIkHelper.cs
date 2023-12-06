@@ -10,7 +10,9 @@ public class AimIkHelper : MonoBehaviour
     [SerializeField] float m_MaxAimDistance;
     [SerializeField] LayerMask m_AimLayerMask;
     [SerializeField] Transform m_TransformToMove;
+    [SerializeField] Transform m_RightHandIKTarget;
     [SerializeField] Rig m_RigToEnable;
+    [SerializeField] Rig m_RightHandIK; 
     [SerializeField] Rig m_LeftHandIkRig;
     [SerializeField] Rig m_SpineIK;
     [SerializeField] Rig m_HeadIK;
@@ -25,6 +27,7 @@ public class AimIkHelper : MonoBehaviour
     Shotgun shotgun;
     Burst burst;
     BoltAction boltAction;
+    SemiAutoWeapons semiAutoWeapons;
     RaycastHit hit;
     Camera mainCamera;
     Vector3 aimPosition;
@@ -52,6 +55,7 @@ public class AimIkHelper : MonoBehaviour
             m_HeadIK.weight = 0.0f;
             m_SpineIK.weight = 0f;
             m_RigToEnable.weight = 0.0f;
+            m_RightHandIK.weight = 0.0f;
             inReload = true;
             return;
         }
@@ -92,14 +96,27 @@ public class AimIkHelper : MonoBehaviour
                     m_LeftHandIkRig.weight = 0.0f;
                     break;
             }
+            m_RightHandIK.weight = 0.0f;
             
         }
         else
         {
             m_LeftHandIkRig.weight = 0.0f;
+            if (WeaponsSingleton.Instance.ArmedWeapon != null && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ItemType != InventoryItemType.Melee)
+            {
+                switch (WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration.ShotType)
+                {
+                    case ShotType.SemiAuto:
+                        semiAutoWeapons = (SemiAutoWeapons)WeaponsSingleton.Instance.ArmedWeapon;
+                        m_RigToEnable.weight = 1.0f;
+                        m_RightHandIK.weight = 1.0f;
+                        break;
+                }
+            }
         }
         if(m_AimSharedBoolVariable.Value)
         {
+            m_RightHandIKTarget.position = m_AimSharedVector3.Value;
             m_TransformToMove.position = m_AimSharedVector3.Value;
             m_RigToEnable.weight = 1.0f;
             m_SpineIK.weight = 1.0f;
@@ -110,6 +127,7 @@ public class AimIkHelper : MonoBehaviour
             m_RigToEnable.weight = 0.0f;
             m_SpineIK.weight = 0.0f;
             m_HeadIK.weight = 0.0f;
+            m_RightHandIK.weight = 0.0f;
         }
     }
 }
