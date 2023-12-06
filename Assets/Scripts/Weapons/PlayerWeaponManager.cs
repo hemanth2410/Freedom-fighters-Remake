@@ -191,8 +191,12 @@ public class PlayerWeaponManager : MonoBehaviour
 
     void dropWeapon(InventoryItem obj)
     {
-
-        if(armedWeapon.WeaponData.ShotConfigration.HandlingType == obj.ShotConfigration.HandlingType)
+        if(armedWeapon.WeaponData.ShotConfigration == null && obj.ShotConfigration == null)
+        {
+            Destroy(armedWeapon.gameObject);
+            isArmed = false;
+        }
+        if(armedWeapon.WeaponData.ShotConfigration != null && armedWeapon.WeaponData.ShotConfigration.HandlingType == obj.ShotConfigration.HandlingType)
         {
             Destroy(armedWeapon.gameObject);
             isArmed = false;
