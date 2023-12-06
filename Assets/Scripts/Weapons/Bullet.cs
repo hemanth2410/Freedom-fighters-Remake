@@ -98,6 +98,7 @@ public class Bullet : MonoBehaviour
         float distance = Vector3.Distance(p1, p2);
         if(Physics.Raycast(p1, direction, out hit, distance,m_CollidableSurfaces))
         {
+            WeaponsSingleton.Instance.InvokeTakeDamageEvent(hit.collider.gameObject.GetInstanceID(), (int)damage, explode);
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Meat"))
             {
                 // add particle fx here ignore bullet hole
@@ -106,12 +107,13 @@ public class Bullet : MonoBehaviour
                 blood.transform.forward = direction;
                 blood.GetComponent<ParticleSystem>().Play();
                 blood.GetComponent<DecalHandler>().Setup(30.0f);
-                Debug.Log("Collided with : " + hit.collider.gameObject.name);
-                var meatCollider = hit.collider.GetComponent<TestSubjectGore>();
-                if(meatCollider)
-                {
-                    meatCollider.TakeDamage((int)damage, explode);
-                }
+                //Debug.Log("Collided with : " + hit.collider.gameObject.name);
+                //var meatCollider = hit.collider.GetComponent<TestSubjectGore>();
+                //if(meatCollider)
+                //{
+                //    meatCollider.TakeDamage((int)damage, explode);
+                //}
+                
             }
             else
             {
