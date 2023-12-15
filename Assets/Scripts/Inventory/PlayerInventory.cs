@@ -1,6 +1,8 @@
 using StarterAssets;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -67,7 +69,13 @@ public class PlayerInventory : MonoBehaviour
                 case InventoryItemType.Melee:
                     m_PlayerInventory.AddMeleeWeapon(WeaponsSingleton.Instance.WeaponToShare.WeaponData);
                     break;
-                case InventoryItemType.Throwable: 
+                case InventoryItemType.Throwable:
+                    var pickupItem = WeaponsSingleton.Instance.WeaponToShare.WeaponData;
+                    if(pickupItem.InventoryItemPrefab.GetComponent<GrenadeThrowable>())
+                    {
+                        m_PlayerInventory.AddGrenade(pickupItem);
+                    }
+                    // type cast throwables and store them for visual representation
                     break;
                 case InventoryItemType.Consumable: 
                     break;
@@ -90,7 +98,9 @@ public struct Inventory
     public InventoryItem SecondaryFireArm;
     int remainingHelables;
     public List<InventoryItem> usableWeapons;
-
+    public int RemainingGrenades;
+    public int RemainingFlashBangs;
+    public int RemainingSmoke;
     public void InitializeInventory(int numberOftrowablesPerSlot, int maxNumberOfHelables)
     {
         remainingHelables = numberOftrowablesPerSlot;
@@ -135,5 +145,26 @@ public struct Inventory
     public void RemoveDroppedWeapon(InventoryItem item)
     {
         usableWeapons.Remove(item);
+    }
+
+    public void AddGrenade(InventoryItem grenade)
+    {
+        if(!usableWeapons.Any(x => (GrenadeThrowable)x.InventoryItemPrefab.GetComponent<Weapon>()))
+        {
+            WeaponsSingleton.Instance.InvokeWeaponPicked(grenade);
+        }
+        RemainingGrenades++;
+    }
+    public void AddFlashbang()
+    {
+        RemainingFlashBangs++;
+    }
+    public void AddSmoke()
+    {
+        RemainingSmoke++;
+    }
+    public void RemoveGrenade()
+    {
+        RemainingGrenades--;
     }
 }

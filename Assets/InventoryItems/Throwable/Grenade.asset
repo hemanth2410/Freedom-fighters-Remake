@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f745f52275a8d4791bd76ccf9844fe, type: 3}
+  m_Name: Grenade
+  m_EditorClassIdentifier: 
+  m_inventoryItemPrefab: {fileID: 1684924197149832, guid: b4d03276b0a281849b746a4dee949c24,
+    type: 3}
+  m_itemType: 2
+  m_shotConfigration: {fileID: 0}
+  m_audioConfigration: {fileID: 0}
+  m_inventoryItemName: Grenade
+  m_inventoryItemDescription: Instantly clears all the enemies in about 5 meter radius
+  m_positionOffset: {x: 0.117, y: 0.0332, z: 0}
+  m_rotationOffset: {x: 90, y: 0, z: 180}
+  m_sprite: {fileID: 1900053913, guid: 0374c54d9f205f94699d9096d1b2fce9, type: 3}

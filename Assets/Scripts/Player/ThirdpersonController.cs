@@ -274,12 +274,27 @@ public class ThirdpersonController : MonoBehaviour
             }
             if(input.Jump && jumpTimeoutDelta < 0.0f && !input.Crouch)
             {
-                verticalVelocity = Mathf.Sqrt(m_jumpHeight * -2f * m_gravity);
+                // only add this when player is not armed
+                if(WeaponsSingleton.Instance.ArmedWeapon == null ||
+                   WeaponsSingleton.Instance.ArmedWeapon.WeaponData == null || 
+                   WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration == null || 
+                   WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration.HandlingType == HandlingType.SingleHand) 
+                {
+                    verticalVelocity = Mathf.Sqrt(m_jumpHeight * -2f * m_gravity);
+                }
                 if(hasAnimator)
                 {
                     animator.SetBool(animIDJump, true);
                 }
+                
             }
+            //if(input.Jump && jumpTimeoutDelta < 0.0f && !input.Crouch && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration.HandlingType != HandlingType.DualHand)
+            //{
+            //    if (hasAnimator)
+            //    {
+            //        animator.SetBool(animIDJump, true);
+            //    }
+            //}
             if(jumpTimeoutDelta >= 0.0f)
             {
                 jumpTimeoutDelta -= Time.deltaTime;

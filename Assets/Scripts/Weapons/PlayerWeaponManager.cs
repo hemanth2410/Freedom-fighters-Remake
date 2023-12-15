@@ -237,21 +237,34 @@ public class PlayerWeaponManager : MonoBehaviour
                     break;
                 case InventoryItemType.FireArm:
                     break;
-                case InventoryItemType.Throwable: 
+                case InventoryItemType.Throwable:
+                    // perfect place to play the animation
+                    animator.SetLayerWeight(animator.GetLayerIndex("AttackLayer"), 1.0f);
+                    animator.SetBool("Throw", true);
+                    cooldown = true;
+                    timer = m_coolDown;
                     break;
                 default: break;
             }
         }
-        if (timer < 0.0f && armedWeapon.WeaponData.ItemType == InventoryItemType.Melee)
+        if (timer < 0.0f && armedWeapon.WeaponData.ItemType != InventoryItemType.FireArm)
         {
             cooldown = false;
             animator.SetBool("Attack", false);
+            animator.SetBool("Throw", false);
             animator.SetLayerWeight(animator.GetLayerIndex("AttackLayer"), 0f);
         }
         else
             return;
     }
-
+    void throwThrowable()
+    {
+        //WeaponsSingleton.Instance.
+        // ok we didnot actually code the support structure to handle weapon throw
+        var k = Instantiate(WeaponsSingleton.Instance.ArmedWeapon.WeaponData.InventoryItemPrefab,m_handBone.position, Quaternion.identity);
+        k.GetComponent<Rigidbody>().AddForce(transform.forward * 15.0f, ForceMode.Impulse);
+        k.GetComponent<Weapon>().SetWeaponReady();
+    }
     void setArmedWeaponInWeaponsSingleton(Weapon weapon)
     {
         WeaponsSingleton.Instance.SetArmedWeapon(weapon);

@@ -37,7 +37,7 @@ public class WeaponsSingleton : MonoBehaviour
     public event Action ReloadComplete;
     public event Action<Sprite, string> AddItemToInventory;
     public event Action<Sprite, string> DropItemFromInventory;
-    public event Action<int, int, bool> TakeDamageEvent;
+    public event Action<int, int, bool, Vector3> TakeDamageEvent;
     public IObjectPool<GameObject> BulletPool { get { return bulletPool; } }
     public IObjectPool<GameObject> DecalPool { get { return decalPool; } }
     public IObjectPool<GameObject> BloodPool { get { return bloodPool; } }
@@ -114,8 +114,8 @@ public class WeaponsSingleton : MonoBehaviour
     {
         DropItemFromInventory?.Invoke(sprite, label);
     }
-    public void InvokeTakeDamageEvent(int id,  int damage, bool explode = false)
+    public void InvokeTakeDamageEvent(int id,  int damage, Vector3 direction, bool explode = false)
     {
-        TakeDamageEvent?.Invoke(id, damage, explode);
+        TakeDamageEvent?.Invoke(id, damage, explode, direction);
     }
 }

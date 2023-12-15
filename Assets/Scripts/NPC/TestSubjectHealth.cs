@@ -8,6 +8,7 @@ public class TestSubjectHealth : MonoBehaviour
     [SerializeField] float m_AnimCoolDown;
     float timer;
     [SerializeField] float health;
+    [SerializeField] Transform m_HipTransform;
     bool doAnimation;
     Animator animator;
     Rigidbody[] ragdollBodies;
@@ -42,7 +43,7 @@ public class TestSubjectHealth : MonoBehaviour
         }
         
     }
-    public void TakeBulletDamage(float damage)
+    public void TakeBulletDamage(float damage, string triggerName)
     {
         health -= damage;
         if (health <= 0.0f)
@@ -54,6 +55,11 @@ public class TestSubjectHealth : MonoBehaviour
             animator.enabled = false;
             // Now add force.
         }
+        else
+        {
+            animator.SetTrigger(triggerName);
+        }
+
     }
     public void TakeAbsoluteDamage(float damage)
     {
@@ -80,5 +86,49 @@ public class TestSubjectHealth : MonoBehaviour
             animator.enabled = false;
             // Now add force.
         }
+    }
+
+    public void AddExplosionForce(Vector3 position, float force, float blastRadius)
+    {
+        foreach (var b in ragdollBodies)
+        {
+            b.AddExplosionForce(force, position, blastRadius);
+        }
+    }
+
+    public void MakeRagdoll()
+    {
+        if (health <= 0.0f)
+            return;
+        foreach (var b in ragdollBodies)
+        {
+            b.isKinematic = false;
+        }
+        animator.enabled = false;
+        // start an Ienumurator to blend between ragdoll and animation
+        //GetComponent<CharacterController>().enabled = false;
+        StartCoroutine(TransitionFromRagdoll(3.0f));
+        
+    }
+
+    IEnumerator TransitionFromRagdoll(float time)
+    {
+        float _t = 0;
+        while(_t < time)
+        {
+            _t += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        // get hip bone front and compute the cross with World UP
+        // if cross.y > 0 then we raise from front
+        // else we raise from back
+        Vector3 _cross = Vector3.Cross(m_HipTransform.forward, Vector3.up);
+        foreach (var b in ragdollBodies)
+        {
+            b.isKinematic = true;
+        }
+        animator.enabled = true;
+        animator.SetTrigger(_cross.y > 0.0f ? "Raise_Back" : "Raise_Front");
+        yield return null;
     }
 }

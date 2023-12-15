@@ -102,7 +102,7 @@ public class AimIkHelper : MonoBehaviour
         else
         {
             m_LeftHandIkRig.weight = 0.0f;
-            if (WeaponsSingleton.Instance.ArmedWeapon != null && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ItemType != InventoryItemType.Melee)
+            if (WeaponsSingleton.Instance.ArmedWeapon != null && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ItemType != InventoryItemType.Melee && WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ItemType != InventoryItemType.Throwable)
             {
                 switch (WeaponsSingleton.Instance.ArmedWeapon.WeaponData.ShotConfigration.ShotType)
                 {

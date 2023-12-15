@@ -98,7 +98,7 @@ public class Bullet : MonoBehaviour
         float distance = Vector3.Distance(p1, p2);
         if(Physics.Raycast(p1, direction, out hit, distance,m_CollidableSurfaces))
         {
-            WeaponsSingleton.Instance.InvokeTakeDamageEvent(hit.collider.gameObject.GetInstanceID(), (int)damage, explode);
+            WeaponsSingleton.Instance.InvokeTakeDamageEvent(hit.collider.gameObject.GetInstanceID(), (int)damage, direction, explode);
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Meat"))
             {
                 // add particle fx here ignore bullet hole
