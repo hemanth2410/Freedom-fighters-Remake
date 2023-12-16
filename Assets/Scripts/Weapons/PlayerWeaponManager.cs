@@ -94,7 +94,7 @@ public class PlayerWeaponManager : MonoBehaviour
         else
         {
             animator.SetBool("TwoHanded", false);
-            if (armedWeapon.WeaponData.ItemType != InventoryItemType.FireArm)
+            if (armedWeapon.WeaponData.ItemType == InventoryItemType.FireArm)
             {
                 switch (armedWeapon.WeaponData.ShotConfigration.ShotType)
                 {

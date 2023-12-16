@@ -8,6 +8,7 @@ public class FlashbangThrowable : Weapon
     [SerializeField] float m_fuseTimer;
     [SerializeField] float m_influenceRadius;
     [SerializeField] GameObject m_ExplosionFX;
+    AudioSource source;
     CinemachineImpulseSource impulseSource;
     // Start is called before the first frame update
     protected override void Start()
@@ -18,6 +19,7 @@ public class FlashbangThrowable : Weapon
             return;
         StartCoroutine(explode());
         impulseSource = GetComponent<CinemachineImpulseSource>();
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,7 +34,8 @@ public class FlashbangThrowable : Weapon
     {
         yield return new WaitForSecondsRealtime(m_fuseTimer);
         Instantiate(m_ExplosionFX, transform.position, Quaternion.identity);
-        impulseSource.GenerateImpulse();
+        source.Play();
+        //impulseSource.GenerateImpulse();
         Collider[] people = Physics.OverlapSphere(transform.position, m_influenceRadius);
         for (int i = 0; i < people.Length; i++)
         {

@@ -157,7 +157,7 @@ public struct Inventory
 
     public void AddGrenade(InventoryItem grenade)
     {
-        if(!usableWeapons.Any(x => (GrenadeThrowable)x.InventoryItemPrefab.GetComponent<Weapon>()))
+        if (!usableWeapons.OfType<GrenadeThrowable>().Any())
         {
             WeaponsSingleton.Instance.InvokeWeaponPicked(grenade);
             usableWeapons.Add(grenade);
@@ -166,7 +166,7 @@ public struct Inventory
     }
     public void AddFlashbang(InventoryItem flashbang)
     {
-        if (!usableWeapons.Any(x => (FlashbangThrowable)x.InventoryItemPrefab.GetComponent<Weapon>()))
+        if (!usableWeapons.OfType<FlashbangThrowable>().Any())
         {
             WeaponsSingleton.Instance.InvokeWeaponPicked(flashbang);
             usableWeapons.Add(flashbang);
@@ -175,7 +175,7 @@ public struct Inventory
     }
     public void AddSmoke(InventoryItem smoke)
     {
-        if (!usableWeapons.Any(x => (SmokeThrowable)x.InventoryItemPrefab.GetComponent<Weapon>()))
+        if (!usableWeapons.OfType<SmokeThrowable>().Any())
         {
             WeaponsSingleton.Instance.InvokeWeaponPicked(smoke);
             usableWeapons.Add(smoke);

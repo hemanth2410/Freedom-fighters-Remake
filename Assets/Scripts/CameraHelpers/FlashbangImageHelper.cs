@@ -24,7 +24,7 @@ public class FlashbangImageHelper : MonoBehaviour
     }
     private void OnEnable()
     {
-        fadeColor = new Color(0, 0, 0, 0);
+        fadeColor = new Color(1, 1, 1, 0);
         resetTimer = m_fadeTimer;
         image = GetComponent<Image>();
         // wait for one frame and do
