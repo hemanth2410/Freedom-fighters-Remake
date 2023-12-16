@@ -55,5 +55,6 @@ public class GrenadeThrowable : Weapon
         // A reminder, decrement thr count as soon as you drop the grenade
         // use overlap sphere to deal damage and add ragdoll physics.
         // finally reduce the count in inventory.
+        // Only commmit Audio configration
     }
 }

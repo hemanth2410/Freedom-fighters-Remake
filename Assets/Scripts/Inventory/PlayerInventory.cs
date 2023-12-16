@@ -75,6 +75,14 @@ public class PlayerInventory : MonoBehaviour
                     {
                         m_PlayerInventory.AddGrenade(pickupItem);
                     }
+                    if (pickupItem.InventoryItemPrefab.GetComponent<SmokeThrowable>())
+                    {
+                        m_PlayerInventory.AddSmoke(pickupItem);
+                    }
+                    if(pickupItem.InventoryItemPrefab.GetComponent<FlashbangThrowable>())
+                    {
+                        m_PlayerInventory.AddFlashbang(pickupItem);
+                    }
                     // type cast throwables and store them for visual representation
                     break;
                 case InventoryItemType.Consumable: 
@@ -152,15 +160,26 @@ public struct Inventory
         if(!usableWeapons.Any(x => (GrenadeThrowable)x.InventoryItemPrefab.GetComponent<Weapon>()))
         {
             WeaponsSingleton.Instance.InvokeWeaponPicked(grenade);
+            usableWeapons.Add(grenade);
         }
         RemainingGrenades++;
     }
-    public void AddFlashbang()
+    public void AddFlashbang(InventoryItem flashbang)
     {
+        if (!usableWeapons.Any(x => (FlashbangThrowable)x.InventoryItemPrefab.GetComponent<Weapon>()))
+        {
+            WeaponsSingleton.Instance.InvokeWeaponPicked(flashbang);
+            usableWeapons.Add(flashbang);
+        }
         RemainingFlashBangs++;
     }
-    public void AddSmoke()
+    public void AddSmoke(InventoryItem smoke)
     {
+        if (!usableWeapons.Any(x => (SmokeThrowable)x.InventoryItemPrefab.GetComponent<Weapon>()))
+        {
+            WeaponsSingleton.Instance.InvokeWeaponPicked(smoke);
+            usableWeapons.Add(smoke);
+        }
         RemainingSmoke++;
     }
     public void RemoveGrenade()

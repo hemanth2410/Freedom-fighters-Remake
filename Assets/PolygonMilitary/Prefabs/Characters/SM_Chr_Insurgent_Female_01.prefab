@@ -595,6 +595,9 @@ MonoBehaviour:
   - {fileID: 6854290903806274391}
   - {fileID: 7909812911771966756}
   - {fileID: 570918873975597055}
+  m_RagdollOnHit: 0
+  m_ForwardTrigger: Hit
+  m_BackwardTrigger: BodyHit
 --- !u!1 &1058424121189542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1336,9 @@ MonoBehaviour:
   m_GoreDecals:
   - {fileID: 168531635483725168}
   - {fileID: 703359720322956416}
+  m_RagdollOnHit: 0
+  m_ForwardTrigger: Hit
+  m_BackwardTrigger: BodyHit
 --- !u!1 &1152521248401024
 GameObject:
   m_ObjectHideFlags: 0
@@ -2056,6 +2062,9 @@ MonoBehaviour:
   - {fileID: 5770924699073961921}
   - {fileID: 1479142314073890893}
   - {fileID: 2257258638676131835}
+  m_RagdollOnHit: 1
+  m_ForwardTrigger: 
+  m_BackwardTrigger: 
 --- !u!1 &1261534090689900
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,6 +2320,9 @@ MonoBehaviour:
   - {fileID: 2618426598507923816}
   - {fileID: 8117773125409240006}
   - {fileID: 5303494107930383562}
+  m_RagdollOnHit: 1
+  m_ForwardTrigger: 
+  m_BackwardTrigger: 
 --- !u!1 &1305675558767066
 GameObject:
   m_ObjectHideFlags: 0
@@ -2471,6 +2483,9 @@ MonoBehaviour:
   - {fileID: 3745668337824320120}
   - {fileID: 7451134395254308789}
   - {fileID: 3657783765454150228}
+  m_RagdollOnHit: 1
+  m_ForwardTrigger: 
+  m_BackwardTrigger: 
 --- !u!1 &1313886917172990
 GameObject:
   m_ObjectHideFlags: 0
@@ -3965,6 +3980,9 @@ MonoBehaviour:
   m_GoreObjects: []
   m_TransformToScale: {fileID: 0}
   m_GoreDecals: []
+  m_RagdollOnHit: 0
+  m_ForwardTrigger: Hit
+  m_BackwardTrigger: BodyHit
 --- !u!1 &1545431474524656
 GameObject:
   m_ObjectHideFlags: 0
@@ -4840,6 +4858,9 @@ MonoBehaviour:
   - {fileID: 7966800489011367275}
   - {fileID: 2094713431260961264}
   - {fileID: 2850367842516660170}
+  m_RagdollOnHit: 0
+  m_ForwardTrigger: Hit
+  m_BackwardTrigger: BodyHit
 --- !u!1 &1647468473869764
 GameObject:
   m_ObjectHideFlags: 0
@@ -5227,6 +5248,9 @@ MonoBehaviour:
   m_TransformToScale: {fileID: 4346119507570016}
   m_GoreDecals:
   - {fileID: 4596514582958262290}
+  m_RagdollOnHit: 0
+  m_ForwardTrigger: 
+  m_BackwardTrigger: 
 --- !u!1 &1666144747493992
 GameObject:
   m_ObjectHideFlags: 0
@@ -5331,6 +5355,8 @@ MonoBehaviour:
   m_MaxHealth: 100
   m_AnimCoolDown: 1.5
   health: 0
+  m_HipTransform: {fileID: 4240786112093668}
+  m_RootTransform: {fileID: 4565605950966648}
 --- !u!1 &1672196683749566
 GameObject:
   m_ObjectHideFlags: 0
@@ -5710,6 +5736,9 @@ MonoBehaviour:
   m_GoreObjects: []
   m_TransformToScale: {fileID: 0}
   m_GoreDecals: []
+  m_RagdollOnHit: 0
+  m_ForwardTrigger: Hit
+  m_BackwardTrigger: BodyHit
 --- !u!1 &1699295902570544
 GameObject:
   m_ObjectHideFlags: 0
@@ -6883,6 +6912,9 @@ MonoBehaviour:
   m_TransformToScale: {fileID: 4668332483387392}
   m_GoreDecals:
   - {fileID: 3582754677593157005}
+  m_RagdollOnHit: 0
+  m_ForwardTrigger: Hit
+  m_BackwardTrigger: BodyHit
 --- !u!1 &1824425562755558
 GameObject:
   m_ObjectHideFlags: 0
@@ -7790,6 +7822,9 @@ MonoBehaviour:
   - {fileID: 927475337119879339}
   - {fileID: 8673412022949946073}
   - {fileID: 5792941622072517700}
+  m_RagdollOnHit: 1
+  m_ForwardTrigger: 
+  m_BackwardTrigger: 
 --- !u!1 &1932635789616522
 GameObject:
   m_ObjectHideFlags: 0

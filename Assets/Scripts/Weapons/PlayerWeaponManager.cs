@@ -22,7 +22,7 @@ public class PlayerWeaponManager : MonoBehaviour
     float timer;
     int currentIndex = 0;
     Dictionary<string,GameObject> pickedWeapons = new Dictionary<string,GameObject>();
-
+    Camera mainCamera;
     //public Weapon ArmedWeapon { get { return armedWeapon; } }
     // Start is called before the first frame update
     void Start()
@@ -33,6 +33,7 @@ public class PlayerWeaponManager : MonoBehaviour
         WeaponsSingleton.Instance.WeaponPicked += Instance_WeaponPicked;
         WeaponsSingleton.Instance.DropWeapon += dropWeapon;
         WeaponsSingleton.Instance.SwitchWeapon += Instance_SwitchWeapon;
+        mainCamera = Camera.main;
     }
 
     void onReloadComplete()
@@ -93,7 +94,7 @@ public class PlayerWeaponManager : MonoBehaviour
         else
         {
             animator.SetBool("TwoHanded", false);
-            if (armedWeapon.WeaponData.ItemType != InventoryItemType.Melee)
+            if (armedWeapon.WeaponData.ItemType != InventoryItemType.FireArm)
             {
                 switch (armedWeapon.WeaponData.ShotConfigration.ShotType)
                 {
@@ -262,7 +263,7 @@ public class PlayerWeaponManager : MonoBehaviour
         //WeaponsSingleton.Instance.
         // ok we didnot actually code the support structure to handle weapon throw
         var k = Instantiate(WeaponsSingleton.Instance.ArmedWeapon.WeaponData.InventoryItemPrefab,m_handBone.position, Quaternion.identity);
-        k.GetComponent<Rigidbody>().AddForce(transform.forward * 15.0f, ForceMode.Impulse);
+        k.GetComponent<Rigidbody>().AddForce(mainCamera.transform.forward * 15.0f, ForceMode.Impulse);
         k.GetComponent<Weapon>().SetWeaponReady();
     }
     void setArmedWeaponInWeaponsSingleton(Weapon weapon)

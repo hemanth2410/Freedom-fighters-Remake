@@ -13,5 +13,6 @@ public class AudioConfigration : ScriptableObject
     public AudioClip FarClip => m_FarClips[Random.Range(0, m_FarClips.Length - 1)];
     public AudioClip Loop => m_Loop;
     public AudioClip Trail => m_Trail;
+    // I have changed something in audio configration
 
 }

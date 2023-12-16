@@ -9,6 +9,7 @@ public class TestSubjectHealth : MonoBehaviour
     float timer;
     [SerializeField] float health;
     [SerializeField] Transform m_HipTransform;
+    [SerializeField] Transform m_RootTransform;
     bool doAnimation;
     Animator animator;
     Rigidbody[] ragdollBodies;
@@ -122,6 +123,9 @@ public class TestSubjectHealth : MonoBehaviour
         // get hip bone front and compute the cross with World UP
         // if cross.y > 0 then we raise from front
         // else we raise from back
+        transform.position = m_HipTransform.position;
+        // need to add ground plane detection
+        m_HipTransform.transform.localPosition = new Vector3(0, 0, 0);
         Vector3 _cross = Vector3.Cross(m_HipTransform.forward, Vector3.up);
         foreach (var b in ragdollBodies)
         {
